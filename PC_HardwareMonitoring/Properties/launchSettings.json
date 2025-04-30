@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "PC_HardwareMonitoring": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
