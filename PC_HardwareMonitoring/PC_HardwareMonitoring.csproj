@@ -13,4 +13,9 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.5-pre407" />
+    <PackageReference Include="OpenHardwareMonitor" Version="0.9.6" />
+  </ItemGroup>
 </Project>

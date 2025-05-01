@@ -1,0 +1,9 @@
+﻿* Future Features
+	
+	- Export hardware info to a report (PDF, TXT, JSON)
+
+	- Benchmark test integrations
+
+	- Alerts for high temperature or low disk space
+
+	- Theme options (Dark/Light mode)
