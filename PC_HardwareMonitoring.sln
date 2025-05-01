@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC_HardwareMonitoring", "PC_HardwareMonitoring\PC_HardwareMonitoring.csproj", "{B83577EA-A23B-4CD9-A5B9-73EEA74FCC7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC_HardwareMonitoring.Infrastructure", "PC_HardwareMonitoring.Infrastructure\PC_HardwareMonitoring.Infrastructure.csproj", "{6870B0A6-B690-40B6-BDDD-833F900EAB49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,18 @@ Global
 		{B83577EA-A23B-4CD9-A5B9-73EEA74FCC7C}.Release|x86.ActiveCfg = Release|x86
 		{B83577EA-A23B-4CD9-A5B9-73EEA74FCC7C}.Release|x86.Build.0 = Release|x86
 		{B83577EA-A23B-4CD9-A5B9-73EEA74FCC7C}.Release|x86.Deploy.0 = Release|x86
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|arm64.Build.0 = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|x64.Build.0 = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Debug|x86.Build.0 = Debug|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|arm64.ActiveCfg = Release|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|arm64.Build.0 = Release|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|x64.ActiveCfg = Release|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|x64.Build.0 = Release|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|x86.ActiveCfg = Release|Any CPU
+		{6870B0A6-B690-40B6-BDDD-833F900EAB49}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

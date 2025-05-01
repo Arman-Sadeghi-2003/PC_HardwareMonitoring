@@ -18,4 +18,7 @@
     <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.5-pre407" />
     <PackageReference Include="OpenHardwareMonitor" Version="0.9.6" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PC_HardwareMonitoring.Infrastructure\PC_HardwareMonitoring.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>
