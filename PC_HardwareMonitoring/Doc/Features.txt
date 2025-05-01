@@ -1,0 +1,119 @@
+﻿RAM (Memory)
+
+	Total RAM size (in GB)
+
+	Number of sticks / slots used
+
+	RAM model (if available)
+
+	Speed (MHz)
+
+	Type (DDR3, DDR4, DDR5)
+
+	Channel configuration (single, dual)
+
+	Manufacturer
+
+	Serial number (if accessible)
+
+	Form factor (DIMM, SO-DIMM)
+
+________________________________________________________________________________
+
+CPU (Processor)
+
+	Manufacturer (Intel/AMD)
+
+	Model name and number
+
+	Number of physical cores and logical threads
+
+	Base clock and turbo boost frequency
+
+	Cache sizes (L1, L2, L3)
+
+	Architecture (e.g., x64, ARM)
+
+	Generation (e.g., Intel 12th Gen)
+
+	Temperature (if accessible)
+
+	Utilization in real time
+
+	TDP (Thermal Design Power)
+	
+________________________________________________________________________________
+
+GPU (Graphics Card)
+
+	GPU Name and model
+
+	Manufacturer (NVIDIA, AMD, Intel)
+
+	VRAM (memory size)
+
+	Driver version
+
+	Temperature (if accessible)
+
+	Utilization and clock speeds
+
+	DirectX version support
+		
+________________________________________________________________________________
+
+Storage Devices
+
+	Type (HDD / SSD / NVMe)
+
+	Capacity
+
+	Free space and used space
+
+	Model
+
+	Interface (SATA, NVMe, USB)
+
+	Health status (SMART data if accessible)
+
+	Read/Write speeds (basic stats or benchmarks)
+		
+________________________________________________________________________________
+
+Motherboard (if accessible)
+
+	Model
+
+	Manufacturer
+
+	BIOS version and date
+
+	Chipset
+			
+________________________________________________________________________________
+
+System Info
+
+	Operating System version and build
+
+	Uptime
+
+	Computer name
+
+	Logged-in user
+
+	Battery status (for laptops)
+				
+________________________________________________________________________________
+
+Real-time Monitoring (Optional Advanced)
+
+	CPU temperature, load per core
+
+	GPU temperature and usage
+
+	RAM usage percentage
+
+	Disk read/write activity
+
+	Fan speeds (requires deeper access or 3rd-party integration)
