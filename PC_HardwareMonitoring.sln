@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC_HardwareMonitoring", "PC_HardwareMonitoring\PC_HardwareMonitoring.csproj", "{F2FAA372-28B7-48C4-812E-2A372AE5C869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC_HardwareMonitoring.Infrastructure", "PC_HardwareMonitoring.Infrastructure\PC_HardwareMonitoring.Infrastructure.csproj", "{12FAECFB-AEB0-4298-8871-9DF2A0618C03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F2FAA372-28B7-48C4-812E-2A372AE5C869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2FAA372-28B7-48C4-812E-2A372AE5C869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2FAA372-28B7-48C4-812E-2A372AE5C869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12FAECFB-AEB0-4298-8871-9DF2A0618C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12FAECFB-AEB0-4298-8871-9DF2A0618C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12FAECFB-AEB0-4298-8871-9DF2A0618C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12FAECFB-AEB0-4298-8871-9DF2A0618C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

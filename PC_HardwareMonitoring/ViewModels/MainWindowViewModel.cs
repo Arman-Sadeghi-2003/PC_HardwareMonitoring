@@ -1,10 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using PC_HardwareMonitoring.Infrastructure.NotificationManager;
 
 namespace PC_HardwareMonitoring.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
-    {
-        [ObservableProperty]
-        private string greeting = "Welcome, Sir Arman!";
-    }
+	public partial class MainWindowViewModel : ViewModelBase
+	{
+		public MainWindowViewModel()
+		{
+		}
+
+	}
 }

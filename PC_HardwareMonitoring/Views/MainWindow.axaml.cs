@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using PC_HardwareMonitoring.Infrastructure.NotificationManager;
 
 namespace PC_HardwareMonitoring.Views
 {
@@ -8,5 +9,11 @@ namespace PC_HardwareMonitoring.Views
         {
             InitializeComponent();
         }
-    }
+
+		private void Window_Loaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+		{
+			NotificationGenerator.Instance.ShowGreetingNotification(App.MainTopLevel);
+
+		}
+	}
 }

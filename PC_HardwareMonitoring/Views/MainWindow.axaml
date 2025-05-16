@@ -7,12 +7,12 @@
         x:Class="PC_HardwareMonitoring.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="PC_HardwareMonitoring">
+        Title="PC_HardwareMonitoring"
+        Loaded="Window_Loaded">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 </Window>
