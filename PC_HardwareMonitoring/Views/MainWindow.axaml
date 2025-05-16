@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MaxWidth="2000" MaxHeight="1500"
         x:Class="PC_HardwareMonitoring.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -14,7 +15,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-  <Grid>
+  <Grid ColumnDefinitions="* 50">
     <TabControl>
       <!-- Home tab -->
       <TabItem Header="Home">
@@ -35,8 +36,24 @@
       <TabItem Header="RAM">
         <TransitioningContentControl Content="{Binding RamTabVM}"/>
       </TabItem>
+
+      <!-- Motherboard tab -->
+      <TabItem Header="Motherboard">
+        <TransitioningContentControl Content="{Binding RamTabVM}"/>
+      </TabItem>
       
     </TabControl>
+    
+    <!-- Side Items -->
+
+    <StackPanel Spacing="10" Grid.Column="1" Background="#FF5B535A">
+      <Viewbox>
+        <Button Margin="5 0">
+          <Image/>
+        </Button>
+      </Viewbox>
+    </StackPanel>
+    
   </Grid>
   
 </Window>

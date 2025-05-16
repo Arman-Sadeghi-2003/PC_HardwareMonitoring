@@ -1,0 +1,127 @@
+﻿Tabs:
+	1. Home
+		Overview Dashboard – real-time summary of all key stats with live charts.
+	
+		Features:
+
+			🔥 CPU Temperature, Usage (%), Clock speed
+
+			🚀 GPU Temperature, Load (%), Memory usage
+
+			📈 Live charts:
+
+			CPU usage (% over time)
+
+			GPU usage (% over time)
+
+			RAM usage (MB over time)
+
+			🎯 Pie charts:
+
+			RAM: Used vs Available
+
+			GPU memory usage
+
+	2. CPU
+		In-depth look at CPU metrics.
+
+		Details:
+			Temperature (with min/max)
+
+			Current & base clock speed
+
+			Core vs thread count
+
+			Per-core usage (%) (with small inline charts)
+
+			Power draw (if available)
+
+			Live chart: Usage % over time
+
+			Option to show CPU model
+
+	3. GPU
+		Detailed GPU monitoring.
+
+		Details:
+
+			Temperature (min/max)
+
+			GPU Load %
+
+			GPU Memory usage (used vs total)
+
+			Fan speed (if available)
+
+			Live chart: GPU usage or temperature over time
+
+			GPU model info (NVIDIA/AMD/Intel)
+
+	4. RAM
+		Memory usage and trends.
+
+		Details:
+
+			Used vs total RAM
+
+			Free memory (in MB or GB)
+
+			Page file usage (if available)
+
+			Live chart: RAM usage trend
+
+			RAM type (DDR3/DDR4/DDR5), speed, slots used
+
+	5. Motherboard
+		System sensors (limited by hardware support).
+
+		Details:
+			Motherboard temperature (if supported)
+
+			VRM or chipset temperatures
+
+			Fan speeds (CPU/motherboard fans)
+
+			BIOS version (optional)
+
+			Manufacturer info
+
+
+|----------------------------------------------------------------------------------------|
+|                                                                                        |
+|                                      Feature Summary                                   |
+|                                                                                        |
+|----------------------------------------------------------------------------------------|
+| Tab          | Key Features                                                            |
+|--------------|-------------------------------------------------------------------------|
+| Home         | - CPU & GPU Temp, Usage                                                 |
+|              | - RAM Usage                                                             |
+|              | - Live Line & Pie Charts                                                |
+|              | - Compact Overview                                                      |
+|--------------|-------------------------------------------------------------------------|
+| CPU          | - Temperature (min/max)                                                 |
+|              | - Per-Core Usage (%)                                                    |
+|              | - Clock Speeds (Base/Current)                                           |
+|              | - Power Draw (if available)                                             |
+|              | - Live Usage Chart                                                      |
+|--------------|-------------------------------------------------------------------------|
+| GPU          | - Temperature, Load %                                                   |
+|              | - Memory Usage (Used/Total)                                             |
+|              | - Fan Speed (if available)                                              |
+|              | - Live Usage or Temp Chart                                              |
+|--------------|-------------------------------------------------------------------------|
+| RAM          | - Used vs Available                                                     |
+|              | - Page File Usage                                                       |
+|              | - RAM Type, Slots, and Speed                                            |
+|              | - Live RAM Trend Chart                                                  |
+|--------------|-------------------------------------------------------------------------|
+| Motherboard  | - Board & Chipset Temp                                                  |
+|              | - Fan Speeds (CPU/System)                                               |
+|              | - BIOS Version, Manufacturer Info                                       |
+|--------------|-------------------------------------------------------------------------|
+| Settings     | - Theme Switcher (Dark/Light)                                           |
+|              | - Data Refresh Rate Control                                             |
+|              | - Threshold Alerts (Temp, Usage)                                        |
+|              | - In-app Notification Toggle                                            |
+|              | - Language Option (optional)                                            |
+|----------------------------------------------------------------------------------------|

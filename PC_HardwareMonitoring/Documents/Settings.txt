@@ -1,0 +1,15 @@
+﻿Settings Panel (separate or bottom tab)
+
+	🌓 Theme switcher (Dark/Light)
+
+	⏱ Refresh interval (e.g., 1s, 3s, 5s)
+
+	⚠️ Notification thresholds:
+
+		.CPU temp > 90°C
+
+		.RAM usage > 90%
+
+	🔔 Enable in-app notifications (Avalonia.Labs.Notifications)
+
+	🌐 Language switch (optional)
