@@ -6,7 +6,7 @@ A cross-platform PC hardware monitoring application built using **C#**, **Avalon
 
 ## 📸 Preview
 
-> *(Screenshots or GIFs here)*
+> *(For future)*
 
 ---
 
