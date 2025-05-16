@@ -14,5 +14,29 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
+  <Grid>
+    <TabControl>
+      <!-- Home tab -->
+      <TabItem Header="Home">
+        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
+      </TabItem>
+      
+      <!-- CPU tab -->
+      <TabItem Header="CPU">
+        <TransitioningContentControl Content="{Binding CpuTabVM}"/>
+      </TabItem>
 
+      <!-- GPU tab -->
+      <TabItem Header="GPU">
+        <TransitioningContentControl Content="{Binding GpuTabVM}"/>
+      </TabItem>
+
+      <!-- RAM tab -->
+      <TabItem Header="RAM">
+        <TransitioningContentControl Content="{Binding RamTabVM}"/>
+      </TabItem>
+      
+    </TabControl>
+  </Grid>
+  
 </Window>
