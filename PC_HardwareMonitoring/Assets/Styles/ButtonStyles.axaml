@@ -11,7 +11,7 @@
   <!-- Add Styles Here -->
 
   <Style Selector="Button.SidebarButton">
-    <Setter Property="Background" Value="#FFD9D9D9"/>
+    <Setter Property="Background" Value="#FF6D2B4F"/>
     <Setter Property="BorderBrush" Value="Black"/>
     <Setter Property="BorderThickness" Value="3"/>
     <Setter Property="CornerRadius" Value="5"/>
@@ -22,12 +22,12 @@
     <Setter Property="Cursor" Value="Hand"/>
 
     <Style Selector="^:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#FFE9E9E9"/>
-      <Setter Property="BorderBrush" Value="#FF858585"/>
+      <Setter Property="Background" Value="#FF381224"/>
+      <Setter Property="BorderBrush" Value="#FF5D1B3F"/>
     </Style>
     <Style Selector="^:pressed /template/ ContentPresenter">
-      <Setter Property="Background" Value="#FFC9C9C9"/>
-      <Setter Property="BorderBrush" Value="#FF5F5F5F"/>
+      <Setter Property="Background" Value="#FF482234"/>
+      <Setter Property="BorderBrush" Value="#FF7D3B5F"/>
     </Style>
   </Style>
   

@@ -15,14 +15,17 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-  <Grid ColumnDefinitions="50 *">
-
+  <Grid ColumnDefinitions="50 *" Background="#FF141321">
     <!-- Side Items -->
 
-    <Grid Background="#FF5B535A">
+    <Grid Background="#FF2F2C4F">
       <StackPanel Spacing="10" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top">
-        <Button Classes="SidebarButton" Content="H" Command="{Binding NavigateToHomeViewCommand}"/>
-        <Button Classes="SidebarButton" Content="S" Command="{Binding NavigateToSettingsViewCommand}"/>
+        <Button Classes="SidebarButton" Command="{Binding NavigateToHomeViewCommand}" ToolTip.Tip="Home view">
+          <Image Width="35" Height="35" Source="avares://PC_HardwareMonitoring/Assets/Icons/Home_Bold.png"/>
+        </Button>
+        <Button Classes="SidebarButton" Command="{Binding NavigateToSettingsViewCommand}" ToolTip.Tip="Settings view">
+          <Image Width="35" Height="35" Source="avares://PC_HardwareMonitoring/Assets/Icons/Settings_Bold.png"/>
+        </Button>
       </StackPanel>
     </Grid>
 
