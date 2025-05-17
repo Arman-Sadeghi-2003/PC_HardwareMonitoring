@@ -11,8 +11,16 @@
   
     <Application.Styles>
         <FluentTheme />
+      <StyleInclude Source="/Assets/Styles/ButtonStyles.axaml"/>
       <Style Selector="Button">
         <Setter Property="Cursor" Value="Hand"/> 
       </Style>
+      
+      <!-- Tab control style -->
+
+      <Style Selector="TabItem">
+        
+      </Style>
+      
     </Application.Styles>
 </Application>
