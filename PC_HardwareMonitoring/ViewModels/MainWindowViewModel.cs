@@ -1,29 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using PC_HardwareMonitoring.Infrastructure.NotificationManager;
-using PC_HardwareMonitoring.ViewModels.Tabs;
+using CommunityToolkit.Mvvm.Input;
+using PC_HardwareMonitoring.ViewModels.Home;
 
 namespace PC_HardwareMonitoring.ViewModels
 {
 	public partial class MainWindowViewModel : ViewModelBase
 	{
-		#region Properties
-
 		[ObservableProperty]
-		private HomeTabViewModel homeTabVM = new();
-		[ObservableProperty]
-		private CPUTabViewModel cpuTabVM = new();
-		[ObservableProperty]
-		private GPUTabViewModel gpuTabVM = new();
-		[ObservableProperty]
-		private RAMTabViewModel ramTabVM = new();
-
-		#endregion Properties
-
+		private ViewModelBase homeVM;
 		public MainWindowViewModel()
 		{
-
+			HomeVM = HomeViewModel.Instance;
 		}
 
+		[RelayCommand]
+		public void NavigateToHomeView()
+		{
+			HomeVM = HomeViewModel.Instance;
+		}
 
+		[RelayCommand]
+		public void NavigateToSettingsView()
+		{
+			HomeVM = SettingsViewModel.Instance;
+		}
 	}
 }

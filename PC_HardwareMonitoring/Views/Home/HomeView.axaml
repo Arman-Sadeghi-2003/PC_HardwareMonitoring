@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Home"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PC_HardwareMonitoring.Views.Home.HomeView"
+             x:DataType="vm:HomeViewModel">
+  <Grid>
+    <TabControl>
+      <!-- Home tab -->
+      <TabItem Header="Home">
+        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
+      </TabItem>
+
+      <!-- CPU tab -->
+      <TabItem Header="CPU">
+        <TransitioningContentControl Content="{Binding CPUTabVM}"/>
+      </TabItem>
+
+      <!-- GPU tab -->
+      <TabItem Header="GPU">
+        <TransitioningContentControl Content="{Binding GPUTabVM}"/>
+      </TabItem>
+
+      <!-- RAM tab -->
+      <TabItem Header="RAM">
+        <TransitioningContentControl Content="{Binding RAMTabVM}"/>
+      </TabItem>
+
+      <!-- Motherboard tab -->
+      <TabItem Header="Motherboard">
+        <TransitioningContentControl Content="{Binding MotherboardTabVM}"/>
+      </TabItem>
+
+    </TabControl>
+  </Grid>
+</UserControl>

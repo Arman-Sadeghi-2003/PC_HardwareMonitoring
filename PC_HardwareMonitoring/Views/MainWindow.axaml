@@ -16,43 +16,17 @@
     </Design.DataContext>
 
   <Grid ColumnDefinitions="* 50">
-    <TabControl>
-      <!-- Home tab -->
-      <TabItem Header="Home">
-        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
-      </TabItem>
-      
-      <!-- CPU tab -->
-      <TabItem Header="CPU">
-        <TransitioningContentControl Content="{Binding CpuTabVM}"/>
-      </TabItem>
-
-      <!-- GPU tab -->
-      <TabItem Header="GPU">
-        <TransitioningContentControl Content="{Binding GpuTabVM}"/>
-      </TabItem>
-
-      <!-- RAM tab -->
-      <TabItem Header="RAM">
-        <TransitioningContentControl Content="{Binding RamTabVM}"/>
-      </TabItem>
-
-      <!-- Motherboard tab -->
-      <TabItem Header="Motherboard">
-        <TransitioningContentControl Content="{Binding RamTabVM}"/>
-      </TabItem>
-      
-    </TabControl>
+    
+    <TransitioningContentControl Content="{Binding HomeVM}"/>
     
     <!-- Side Items -->
 
-    <StackPanel Spacing="10" Grid.Column="1" Background="#FF5B535A">
-      <Viewbox>
-        <Button Margin="5 0">
-          <Image/>
-        </Button>
-      </Viewbox>
-    </StackPanel>
+    <Grid Grid.Column="1" Background="#FF5B535A">
+      <StackPanel Spacing="10" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <Button Width="30" Height="30" Content="H" Command="{Binding NavigateToHomeViewCommand}"/>
+        <Button Width="30" Height="30" Content="S" Command="{Binding NavigateToSettingsViewCommand}"/>
+      </StackPanel>
+    </Grid>
     
   </Grid>
   
