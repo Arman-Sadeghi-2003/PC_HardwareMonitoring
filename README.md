@@ -19,7 +19,7 @@ A cross-platform PC hardware monitoring application built using **C#**, **Avalon
 | **GPU**      | - Temperature<br/>- Memory Usage<br/>- Load & Fan Speeds                     |
 | **RAM**      | - Used vs Available Memory<br/>- RAM Type & Speed<br/>- Live Usage Chart     |
 | **Motherboard** | - Board Temps<br/>- Fan Speeds<br/>- BIOS & Vendor Info                   |
-| **Settings** | - Theme Switcher<br/>- Refresh Interval<br/>- Threshold Alerts<br/>- Language|
+| **Settings** | - Theme Switcher<br/>- Refresh Interval<br/>- Threshold Alerts<br/>- Run As Startup<br/>- Notification<br/>- Language|
 
 ---
 
