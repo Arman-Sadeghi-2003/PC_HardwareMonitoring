@@ -14,6 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaXaml Remove="Assets\Localization\Strings.axaml" />
+    <AvaloniaXaml Remove="Assets\Localization\Strings.fa-IR.axaml" />
     <AvaloniaXaml Remove="Assets\Styles\ButtonStyles.axaml" />
   </ItemGroup>
 
@@ -41,6 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Update="Assets\Localization\Strings.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Localization\Strings.fa-IR.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
     <AvaloniaResource Update="Assets\Styles\ButtonStyles.axaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>

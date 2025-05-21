@@ -28,7 +28,10 @@
 
       <!-- Home tab -->
       <TabItem Header="Home">
-        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
+        <Grid>
+          <TransitioningContentControl Content="{Binding HomeTabVM}"/>
+          <Button Content="fa" Click="Button_Click"/>
+        </Grid>
       </TabItem>
 
       <!-- CPU tab -->

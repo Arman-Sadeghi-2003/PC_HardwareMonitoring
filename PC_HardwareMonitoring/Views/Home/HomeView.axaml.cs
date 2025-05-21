@@ -10,4 +10,9 @@ public partial class HomeView : UserControl
     {
         InitializeComponent();
     }
+
+	private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+		((App)Application.Current).ChangeLanguage("fa-IR");
+	}
 }

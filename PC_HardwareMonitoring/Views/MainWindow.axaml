@@ -8,7 +8,7 @@
         x:Class="PC_HardwareMonitoring.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="PC_HardwareMonitoring"
+        Title="{DynamicResource ApplicationTitle}"
         Loaded="Window_Loaded">
 
     <Design.DataContext>

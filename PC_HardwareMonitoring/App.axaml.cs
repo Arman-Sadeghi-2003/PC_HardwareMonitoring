@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -5,6 +7,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using Avalonia.Markup.Xaml.Styling;
 using PC_HardwareMonitoring.ViewModels;
 using PC_HardwareMonitoring.Views;
 
@@ -33,10 +36,59 @@ namespace PC_HardwareMonitoring
 				desktop.MainWindow = mainWindow;
 			}
 
-            base.OnFrameworkInitializationCompleted();
+			SetupLocalization();
+
+
+			base.OnFrameworkInitializationCompleted();
         }
 
-        private void DisableAvaloniaDataAnnotationValidation()
+		private void SetupLocalization()
+		{
+			// Set the default culture
+			var culture = new CultureInfo("en-US");
+			CultureInfo.DefaultThreadCurrentCulture = culture;
+			CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+			// Load the resources for the current culture
+			UpdateResourcesForCulture(culture);
+		}
+
+		public void UpdateResourcesForCulture(CultureInfo culture)
+		{
+			// Clear existing localization resources
+			var resources = Resources.MergedDictionaries.Where(x => x is ResourceInclude resourceInclude &&
+				resourceInclude.Source.AbsoluteUri.Contains("/Localization/")).ToList();
+			foreach (var resource in resources)
+			{
+				Resources.MergedDictionaries.Remove(resource);
+			}
+
+			// Add the resource dictionary for the specified culture
+			var resourcePath = $"avares://PC_HardwareMonitoring/Assets/Localization/Strings.{culture.Name}.axaml";
+
+			// Fallback to default language if the specific culture resource doesn't exist
+			if (!Uri.TryCreate(resourcePath, UriKind.Absolute, out _) || culture.Name == "en-US")
+			{
+				resourcePath = "avares://PC_HardwareMonitoring/Assets/Localization/Strings.axaml";
+			}
+
+			var uri = new Uri(resourcePath);
+			var resourceInclude = new ResourceInclude(uri);
+			resourceInclude.Source = uri;  // Set the Source property before adding to MergedDictionaries
+			Resources.MergedDictionaries.Add(resourceInclude);
+		}
+
+		// Method to change language at runtime
+		public void ChangeLanguage(string languageCode)
+		{
+			var newCulture = new CultureInfo(languageCode);
+			CultureInfo.DefaultThreadCurrentCulture = newCulture;
+			CultureInfo.DefaultThreadCurrentUICulture = newCulture;
+
+			UpdateResourcesForCulture(newCulture);
+		}
+
+		private void DisableAvaloniaDataAnnotationValidation()
         {
             // Get an array of plugins to remove
             var dataValidationPluginsToRemove =
