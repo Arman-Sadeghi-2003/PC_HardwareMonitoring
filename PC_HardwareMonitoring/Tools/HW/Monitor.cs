@@ -4,6 +4,7 @@ using System.Text;
 using System.Management;
 using System.ComponentModel.DataAnnotations;
 using Avalonia.Xaml.Interactions.Custom;
+using PC_HardwareMonitoring.Infrastructure.NotificationManager;
 
 namespace PC_HardwareMonitoring.Tools.HW
 {
@@ -15,7 +16,11 @@ namespace PC_HardwareMonitoring.Tools.HW
 		private static Monitor instance;
 		public static Monitor Instance => instance ?? (instance = new Monitor());
 
-		// ----> Mehtods
+		// ----> Properties
+
+		private bool cpuTempSent = false;
+
+		// ----> Methods
 
 		public string GetAllInfos()
 		{
@@ -202,6 +207,11 @@ namespace PC_HardwareMonitoring.Tools.HW
 							if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
 							{
 								builder.AppendLine($"{sensor.Name}: {sensor.Value} °C");
+								if (sensor.Value >= 55 && sensor.Name == "Core Max" && !cpuTempSent)
+								{
+									NotificationGenerator.Instance.ShowCPUTempWarning(App.MainTopLevel, sensor.Value ?? 0);
+									cpuTempSent = true;
+								}
 							}
 						}
 					}

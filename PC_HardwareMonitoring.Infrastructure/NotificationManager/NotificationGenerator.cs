@@ -30,6 +30,10 @@ namespace PC_HardwareMonitoring.Infrastructure.NotificationManager
 			=> generateNotification("Greeting", "Welcome to PC hardware monitoring app. Hopefully, this app will be useful to you!"
 				, (byte)duration, NotificationType.Information, topLevel);
 
+		public void ShowCPUTempWarning(TopLevel? topLevel, float temperature, NotificationDurations duration = NotificationDurations.Medium)
+			=> generateNotification("CPU Temperature Warning!", " The CPU temperature has reached a critical level.\nTemperature: " + temperature.ToString()
+				, (byte)duration, NotificationType.Information, topLevel);
+
 		/// <summary>
 		/// Generates and displays a notification with the specified parameters.
 		/// </summary>
