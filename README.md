@@ -4,6 +4,10 @@ A cross-platform PC hardware monitoring application built using **C#**, **Avalon
 
 ---
 
+## 📸 Icon
+
+<img src="https://github.com/user-attachments/assets/7d5ec7b2-3d16-49c4-bd24-5ef4503f6ba9" alt="HW_monitoring" width="300" height="300"/>
+
 ## 📸 Preview
 
 > *(For future)*
