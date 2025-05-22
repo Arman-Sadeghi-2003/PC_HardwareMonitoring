@@ -4,11 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_HardwareMonitoring.Views.Tabs.HomeTabView"
              x:DataType="vm:HomeTabViewModel">
 
-  <Grid>
-    
+  <Grid RowDefinitions="* *" ColumnDefinitions="* *">
+    <lvc:CartesianChart Series="{Binding CPU_Series}" ZoomMode="X"
+                        AnimationsSpeed="00:00:1"
+                        EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.BounceOut}}"
+                        XAxes="{Binding XAxis}"
+                        FlowDirection="LeftToRight"/>
   </Grid>
 </UserControl>

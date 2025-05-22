@@ -27,30 +27,27 @@
       </TabControl.Styles>
 
       <!-- Home tab -->
-      <TabItem Header="Home">
-        <Grid>
-          <TransitioningContentControl Content="{Binding HomeTabVM}"/>
-          <Button Content="fa" Click="Button_Click"/>
-        </Grid>
+      <TabItem Header="{DynamicResource HomeTabTitle}">
+        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
       </TabItem>
 
       <!-- CPU tab -->
-      <TabItem Header="CPU">
+      <TabItem Header="{DynamicResource CPUTabTitle}">
         <TransitioningContentControl Content="{Binding CPUTabVM}"/>
       </TabItem>
 
       <!-- GPU tab -->
-      <TabItem Header="GPU">
+      <TabItem Header="{DynamicResource GPUTabTitle}">
         <TransitioningContentControl Content="{Binding GPUTabVM}"/>
       </TabItem>
 
       <!-- RAM tab -->
-      <TabItem Header="RAM">
+      <TabItem Header="{DynamicResource RAMTabTitle}">
         <TransitioningContentControl Content="{Binding RAMTabVM}"/>
       </TabItem>
 
       <!-- Motherboard tab -->
-      <TabItem Header="Motherboard">
+      <TabItem Header="{DynamicResource MotherboardTabTitle}">
         <TransitioningContentControl Content="{Binding MotherboardTabVM}"/>
       </TabItem>
 

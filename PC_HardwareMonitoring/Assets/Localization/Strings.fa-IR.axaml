@@ -2,4 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=System.Runtime">
   <system:String x:Key="ApplicationTitle">مانیتورینگ سخت افزار</system:String>
+  <system:String x:Key="HomeTabTitle">خانه</system:String>
+  <system:String x:Key="CPUTabTitle">پردازنده</system:String>
+  <system:String x:Key="GPUTabTitle">گرافیک</system:String>
+  <system:String x:Key="RAMTabTitle">رم</system:String>
+  <system:String x:Key="MotherboardTabTitle">مادربرد</system:String>
+  
 </ResourceDictionary>

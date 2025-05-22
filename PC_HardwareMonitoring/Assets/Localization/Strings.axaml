@@ -2,4 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=System.Runtime">
   <system:String x:Key="ApplicationTitle">PC Hardware monitoring</system:String>
+  <system:String x:Key="HomeTabTitle">Home</system:String>
+  <system:String x:Key="CPUTabTitle">CPU</system:String>
+  <system:String x:Key="GPUTabTitle">GPU</system:String>
+  <system:String x:Key="RAMTabTitle">RAM</system:String>
+  <system:String x:Key="MotherboardTabTitle">Motherboard</system:String>
+  
 </ResourceDictionary>
