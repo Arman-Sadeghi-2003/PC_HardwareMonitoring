@@ -7,6 +7,9 @@
              x:Class="PC_HardwareMonitoring.Views.Tabs.CPUTabView"
              x:DataType="vm:CPUTabViewModel">
   <ScrollViewer>
-    <TextBlock Text="{Binding CPUInfos}"/>
+    <Grid ColumnDefinitions="* *">
+      <TextBlock Text="{Binding CPUInfos}"/>
+      <TextBlock Text="{Binding CPUTemp}" Grid.Column="1"/>
+    </Grid>
   </ScrollViewer>
 </UserControl>

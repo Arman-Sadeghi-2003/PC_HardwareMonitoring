@@ -7,7 +7,7 @@
         MaxWidth="2000" MaxHeight="1500"
         x:Class="PC_HardwareMonitoring.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="avares://PC_HardwareMonitoring/Assets/Logo/HW_monitoring transparent.ico"
         Title="{DynamicResource ApplicationTitle}"
         Loaded="Window_Loaded">
 

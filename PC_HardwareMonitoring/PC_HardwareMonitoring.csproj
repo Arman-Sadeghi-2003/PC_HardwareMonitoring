@@ -6,6 +6,8 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>Assets\Logo\HW_monitoring transparent.ico</ApplicationIcon>
+    <Company>AILC</Company>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +18,10 @@
     <AvaloniaXaml Remove="Assets\Localization\Strings.axaml" />
     <AvaloniaXaml Remove="Assets\Localization\Strings.fa-IR.axaml" />
     <AvaloniaXaml Remove="Assets\Styles\ButtonStyles.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Logo\HW_monitoring transparent.ico" />
   </ItemGroup>
 
   <ItemGroup>

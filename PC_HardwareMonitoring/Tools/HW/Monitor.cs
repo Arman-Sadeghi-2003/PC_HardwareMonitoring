@@ -179,5 +179,43 @@ namespace PC_HardwareMonitoring.Tools.HW
 
 			return builder.ToString();
 		}
+	
+		public string GetCPUTemp()
+		{
+			var builder = new StringBuilder();
+
+			try
+			{
+				Computer computer = new Computer
+				{
+					IsCpuEnabled = true
+				};
+				computer.Open();
+
+				foreach (var hardware in computer.Hardware)
+				{
+					if (hardware.HardwareType == HardwareType.Cpu)
+					{
+						hardware.Update();
+						foreach (var sensor in hardware.Sensors)
+						{
+							if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
+							{
+								builder.AppendLine($"{sensor.Name}: {sensor.Value} °C");
+							}
+						}
+					}
+				}
+
+				computer.Close();
+			}
+			catch (Exception ex)
+			{
+				builder.Clear();
+				builder.AppendLine(ex.Message);
+			}
+
+			return builder.ToString();
+		}
 	}
 }
