@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_HardwareMonitoring.Views.Tabs.MotherboardTabView"
              x:DataType="vm:MotherboardTabViewModel">
-  <Grid>
-    
-  </Grid>
+  <ScrollViewer>
+    <Label Content="{Binding MotherboardInfos}" SelectableTextBlock.CopyingToClipboard=""/>
+  </ScrollViewer>
 </UserControl>

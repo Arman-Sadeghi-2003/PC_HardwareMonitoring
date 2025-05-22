@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PC_HardwareMonitoring.Models
+﻿namespace PC_HardwareMonitoring.Models
 {
 	public class CPU_Usage
 	{

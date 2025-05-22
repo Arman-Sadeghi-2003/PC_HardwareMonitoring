@@ -43,4 +43,3 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		}
 	}
 }
-

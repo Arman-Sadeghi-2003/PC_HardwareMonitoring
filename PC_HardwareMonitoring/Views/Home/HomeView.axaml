@@ -10,47 +10,46 @@
     <TabControl>
       <TabControl.Styles>
         <Style Selector="TabItem">
-          <Setter Property="Margin" Value="10 0"/>
-          <Setter Property="CornerRadius" Value="5"/>
-          <Setter Property="Width" Value="150"/>
-          <Setter Property="FontSize" Value="16"/>
-          <Setter Property="HorizontalContentAlignment" Value="Center"/>
-          <Setter Property="VerticalContentAlignment" Value="Center"/>
+          <Setter Property="Margin" Value="10 0" />
+          <Setter Property="CornerRadius" Value="5" />
+          <Setter Property="Width" Value="150" />
+          <Setter Property="FontSize" Value="16" />
+          <Setter Property="HorizontalContentAlignment" Value="Center" />
+          <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style Selector="TabItem:pointerover">
-          <Setter Property="FontWeight" Value="Bold"/>
+          <Setter Property="FontWeight" Value="Bold" />
         </Style>
         <!-- Style for the TabStrip to center the tabs -->
         <Style Selector="TabControl WrapPanel">
-          <Setter Property="HorizontalAlignment" Value="Center"/>
+          <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
       </TabControl.Styles>
 
       <!-- Home tab -->
       <TabItem Header="{DynamicResource HomeTabTitle}">
-        <TransitioningContentControl Content="{Binding HomeTabVM}"/>
+        <TransitioningContentControl Content="{Binding HomeTabVM}" />
       </TabItem>
 
       <!-- CPU tab -->
       <TabItem Header="{DynamicResource CPUTabTitle}">
-        <TransitioningContentControl Content="{Binding CPUTabVM}"/>
+        <TransitioningContentControl Content="{Binding CPUTabVM}" />
       </TabItem>
 
       <!-- GPU tab -->
       <TabItem Header="{DynamicResource GPUTabTitle}">
-        <TransitioningContentControl Content="{Binding GPUTabVM}"/>
+        <TransitioningContentControl Content="{Binding GPUTabVM}" />
       </TabItem>
 
       <!-- RAM tab -->
       <TabItem Header="{DynamicResource RAMTabTitle}">
-        <TransitioningContentControl Content="{Binding RAMTabVM}"/>
+        <TransitioningContentControl Content="{Binding RAMTabVM}" />
       </TabItem>
 
       <!-- Motherboard tab -->
       <TabItem Header="{DynamicResource MotherboardTabTitle}">
-        <TransitioningContentControl Content="{Binding MotherboardTabVM}"/>
+        <TransitioningContentControl Content="{Binding MotherboardTabVM}" />
       </TabItem>
-
     </TabControl>
   </Grid>
 </UserControl>
