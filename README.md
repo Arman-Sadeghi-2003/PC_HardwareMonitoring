@@ -31,7 +31,7 @@ A cross-platform PC hardware monitoring application built using **C#**, **Avalon
 
 - **UI Framework**: [Avalonia UI](https://avaloniaui.net/)
 - **Language**: C#
-- **Patterns**: MVVM, Dependency Injection, Singleton
+- **Patterns**: MVVM, Singleton
 - **Charts**: [LiveCharts2](https://github.com/beto-rodriguez/LiveCharts2) (Avalonia-compatible)
 - **Notifications**: `Avalonia.Labs.Notifications`
 - **Hardware Access**: [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)
