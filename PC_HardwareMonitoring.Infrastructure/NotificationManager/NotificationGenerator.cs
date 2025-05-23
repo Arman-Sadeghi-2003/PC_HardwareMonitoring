@@ -12,8 +12,11 @@ namespace PC_HardwareMonitoring.Infrastructure.NotificationManager
 		/// <summary>
 		/// Private constructor to prevent external instantiation.
 		/// </summary>
-		private NotificationGenerator() { }
+		private NotificationGenerator()
+		{ }
+
 		private static NotificationGenerator? instance;
+
 		/// <summary>
 		/// Gets the singleton instance of the <see cref="NotificationGenerator"/> class.
 		/// </summary>
@@ -26,7 +29,7 @@ namespace PC_HardwareMonitoring.Infrastructure.NotificationManager
 		/// </summary>
 		/// <param name="topLevel">The top-level window to associate the notification with (can be null).</param>
 		/// <param name="duration">The duration for which the notification is shown. Defaults to <see cref="NotificationDurations.Medium"/>.</param>
-		public void ShowGreetingNotification(TopLevel? topLevel, NotificationDurations duration = NotificationDurations.Medium) 
+		public void ShowGreetingNotification(TopLevel? topLevel, NotificationDurations duration = NotificationDurations.Medium)
 			=> generateNotification("Greeting", "Welcome to PC hardware monitoring app. Hopefully, this app will be useful to you!"
 				, (byte)duration, NotificationType.Information, topLevel);
 
@@ -48,6 +51,5 @@ namespace PC_HardwareMonitoring.Infrastructure.NotificationManager
 
 			NotificationWindowGenerator.Instance.ShowNotification(notification, topLevel);
 		}
-
 	}
 }

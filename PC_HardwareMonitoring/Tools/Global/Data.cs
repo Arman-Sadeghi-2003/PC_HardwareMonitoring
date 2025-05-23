@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PC_HardwareMonitoring.Models.CPU;
 
 namespace PC_HardwareMonitoring.Tools.Global
 {
@@ -10,13 +6,14 @@ namespace PC_HardwareMonitoring.Tools.Global
 	{
 		// ----> Singleton instance
 
-		private Data() { }
+		private Data()
+		{ }
+
 		private static Data instance;
 		public static Data Instance => instance ?? (instance = new Data());
 
 		// ----> Methods
 
-
-
+		public CPU_Model CPU { get; set; }
 	}
 }

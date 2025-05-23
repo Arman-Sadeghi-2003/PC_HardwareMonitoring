@@ -7,6 +7,6 @@
              x:Class="PC_HardwareMonitoring.Views.Tabs.MotherboardTabView"
              x:DataType="vm:MotherboardTabViewModel">
   <ScrollViewer>
-    <Label Content="{Binding MotherboardInfos}" SelectableTextBlock.CopyingToClipboard=""/>
+    <Label Content="{Binding MotherboardInfos}" SelectableTextBlock.CopyingToClipboard="" />
   </ScrollViewer>
 </UserControl>

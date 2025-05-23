@@ -6,7 +6,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_HardwareMonitoring.Views.Tabs.GPUTabView"
              x:DataType="vm:GPUTabViewModel">
-  <Grid>
-    
-  </Grid>
+  <ScrollViewer>
+    <Grid ColumnDefinitions="* *">
+      <TextBlock Text="{Binding GPU_Infos}" />
+      <TextBlock Grid.Column="1" Text="{Binding GPU_Temp}" />
+    </Grid>
+  </ScrollViewer>
 </UserControl>

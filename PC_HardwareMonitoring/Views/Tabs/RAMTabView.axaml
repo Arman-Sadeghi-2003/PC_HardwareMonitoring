@@ -7,6 +7,6 @@
              x:Class="PC_HardwareMonitoring.Views.Tabs.RAMTabView"
              x:DataType="vm:RAMTabViewModel">
   <ScrollViewer>
-    <TextBlock Text="{Binding RamInfos}"/>
+    <TextBlock Text="{Binding RamInfos}" />
   </ScrollViewer>
 </UserControl>

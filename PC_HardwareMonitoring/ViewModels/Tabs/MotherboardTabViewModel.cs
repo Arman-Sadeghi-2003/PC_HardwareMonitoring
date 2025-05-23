@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Tools.HW;
-using System.Text;
 
 namespace PC_HardwareMonitoring.ViewModels.Tabs
 {
