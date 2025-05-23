@@ -1,9 +1,12 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PC_HardwareMonitoring.Tools.URLs
+namespace PC_HardwareMonitoring.Infrastructure.URLs
 {
-	internal abstract class BaseUrls
+	public abstract class BaseUrls
 	{
 		private static string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
