@@ -17,7 +17,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		public GPUTabViewModel()
 		{
 			GPU_Infos = Monitor.Instance.GetGPUInfos();
-			GPU_Temp = Monitor.Instance.GetGPUTemp();
+			//GPU_Temp = Monitor.Instance.GetGPUTemp();
 
 			timer = new DispatcherTimer();
 			timer.Interval = System.TimeSpan.FromSeconds(1);
@@ -27,7 +27,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 		private void Timer_Tick(object? sender, System.EventArgs e)
 		{
-			GPU_Temp = Monitor.Instance.GetGPUTemp();
+			//GPU_Temp = Monitor.Instance.GetGPUTemp();
 		}
 	}
 }

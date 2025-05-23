@@ -1,33 +1,34 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="PC_HardwareMonitoring.App"
-             xmlns:local="using:PC_HardwareMonitoring"
-             RequestedThemeVariant="Dark">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+<Application
+    x:Class="PC_HardwareMonitoring.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PC_HardwareMonitoring"
+    RequestedThemeVariant="Dark">
+    <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
 
-  <Application.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </Application.Resources>
-  
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries />
+        </ResourceDictionary>
+    </Application.Resources>
+
     <Application.Styles>
         <FluentTheme />
-      <StyleInclude Source="/Assets/Styles/ButtonStyles.axaml"/>
-      <Style Selector="Button">
-        <Setter Property="Cursor" Value="Hand"/> 
-      </Style>
-      
-      <!-- Tab control style -->
+        <StyleInclude Source="/Assets/Styles/ButtonStyles.axaml" />
+        <Style Selector="CheckBox">
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
 
-      <Style Selector="TabItem">
-        
-      </Style>
-      
+        <!--  Tab control style  -->
+
+        <Style Selector="TabItem" />
+
     </Application.Styles>
 </Application>

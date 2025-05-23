@@ -1,11 +1,19 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
-  <system:String x:Key="ApplicationTitle">PC Hardware monitoring</system:String>
-  <system:String x:Key="HomeTabTitle">Home</system:String>
-  <system:String x:Key="CPUTabTitle">CPU</system:String>
-  <system:String x:Key="GPUTabTitle">GPU</system:String>
-  <system:String x:Key="RAMTabTitle">RAM</system:String>
-  <system:String x:Key="MotherboardTabTitle">Motherboard</system:String>
-  
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:String x:Key="ApplicationTitle">PC Hardware monitoring</system:String>
+    <system:String x:Key="HomeTabTitle">Home</system:String>
+    <system:String x:Key="CPUTabTitle">CPU</system:String>
+    <system:String x:Key="GPUTabTitle">GPU</system:String>
+    <system:String x:Key="RAMTabTitle">RAM</system:String>
+    <system:String x:Key="MotherboardTabTitle">Motherboard</system:String>
+    <system:String x:Key="SettingsTitle">Settings</system:String>
+    <system:String x:Key="AdvanceSettingsCheckBox">Advance settings mode</system:String>
+    <system:String x:Key="GeneralSettingsTitle">General</system:String>
+    <system:String x:Key="AdvanceSettingsTitle">Advance</system:String>
+    <system:String x:Key="RunAsStartupText">Run application as startup:</system:String>
+    <system:String x:Key="RunAsStartupOffText">Run</system:String>
+    <system:String x:Key="RunAsStartupOnText">Don't Run</system:String>
+
 </ResourceDictionary>

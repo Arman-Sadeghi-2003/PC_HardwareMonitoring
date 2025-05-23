@@ -1,19 +1,24 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
-             xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PC_HardwareMonitoring.Views.Tabs.HomeTabView"
-             x:DataType="vm:HomeTabViewModel">
+<UserControl
+    x:Class="PC_HardwareMonitoring.Views.Tabs.HomeTabView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+    xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:HomeTabViewModel"
+    mc:Ignorable="d">
 
-  <Grid RowDefinitions="* *" ColumnDefinitions="* *">
-    <lvc:CartesianChart Series="{Binding CPU_Series}" ZoomMode="X"
-                        AnimationsSpeed="00:00:1"
-                        EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.BounceOut}}"
-                        XAxes="{Binding XAxis}"
-                        FlowDirection="LeftToRight" />
-  </Grid>
+    <Grid ColumnDefinitions="* *" RowDefinitions="* *">
+        <lvc:CartesianChart
+            AnimationsSpeed="00:00:1"
+            EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.BounceOut}}"
+            FlowDirection="LeftToRight"
+            Series="{Binding CPU_Series}"
+            XAxes="{Binding XAxis}"
+            ZoomMode="X" />
+    </Grid>
 </UserControl>

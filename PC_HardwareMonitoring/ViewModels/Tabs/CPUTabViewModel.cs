@@ -1,6 +1,5 @@
 ﻿using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
-using PC_HardwareMonitoring.Models.CPU;
 using PC_HardwareMonitoring.Tools.HW;
 using System;
 
@@ -24,7 +23,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		{
 			CPUInfos = Monitor.Instance.GetCPUInfos();
 			CPUTemp = Monitor.Instance.GetCPUTemp();
-			CPUUsage = Monitor.Instance.GetCPUUsage();
+			//CPUUsage = Monitor.Instance.GetCPUUsage();
 
 			timer = new();
 			timer.Interval = TimeSpan.FromSeconds(1);
@@ -35,9 +34,9 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		private void Timer_Tick(object? sender, EventArgs e)
 		{
 			CPUTemp = Monitor.Instance.GetCPUTemp();
-			CPUUsage = Monitor.Instance.GetCPUUsage();
+			//CPUUsage = Monitor.Instance.GetCPUUsage();
 			CPUTemp += $"\ninterval: {counter++}";
-			CPUUsage += $"\ninterval: {counter++}";
+			//CPUUsage += $"\ninterval: {counter++}";
 		}
 	}
 }
