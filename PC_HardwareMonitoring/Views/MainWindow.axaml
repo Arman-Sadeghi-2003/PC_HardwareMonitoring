@@ -12,7 +12,8 @@
     d:DesignWidth="800"
     x:DataType="vm:MainWindowViewModel"
     Icon="avares://PC_HardwareMonitoring/Assets/Logo/HW_monitoring transparent.ico"
-    Loaded="Window_Loaded"
+    Loaded="Window_Loaded" 
+    FlowDirection="{DynamicResource FlowDirection}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

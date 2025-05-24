@@ -13,7 +13,11 @@
     <system:String x:Key="GeneralSettingsTitle">عمومی</system:String>
     <system:String x:Key="AdvanceSettingsTitle">پیشرفته</system:String>
     <system:String x:Key="RunAsStartupText">اجرای برنامه زمان اجرای ویندوز:</system:String>
-    <system:String x:Key="RunAsStartupOffText">اجرا شود</system:String>
-    <system:String x:Key="RunAsStartupOnText">اجرا نشود</system:String>
+    <system:String x:Key="RunAsStartupOffText">اجرا نشود</system:String>
+    <system:String x:Key="RunAsStartupOnText">اجرا شود</system:String>
+    <system:String x:Key="LanguageText">زبان برنامه:</system:String>
+  
+  
+    <FlowDirection x:Key="FlowDirection">RightToLeft</FlowDirection>
 
 </ResourceDictionary>

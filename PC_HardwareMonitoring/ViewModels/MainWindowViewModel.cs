@@ -22,7 +22,7 @@ namespace PC_HardwareMonitoring.ViewModels
 		[RelayCommand]
 		public void NavigateToSettingsView()
 		{
-			HomeVM = SettingsViewModel.Instance;
+			HomeVM = new SettingsViewModel();
 		}
 	}
 }

@@ -9,46 +9,59 @@
     d:DesignWidth="800"
     x:DataType="vm:SettingsViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <Grid RowDefinitions="50 * auto">
-            <CheckBox
-                x:Name="advCheckBox"
-                HorizontalAlignment="Center"
-                Content="{DynamicResource AdvanceSettingsCheckBox}" />
-            <Grid Grid.Row="1" RowDefinitions="auto *">
-                <TextBlock
-                    Margin="10,5"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Text="{DynamicResource GeneralSettingsTitle}" />
+  <ScrollViewer>
+    <Grid RowDefinitions="50 auto auto">
+      <CheckBox
+          x:Name="advCheckBox"
+          HorizontalAlignment="Center"
+          Content="{DynamicResource AdvanceSettingsCheckBox}" />
+      <Grid Grid.Row="1" RowDefinitions="auto *">
+        <TextBlock
+            Margin="10,5"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="{DynamicResource GeneralSettingsTitle}" />
 
-                <Grid
-                    Grid.Row="1"
-                    Margin="20"
-                    VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Margin="0,0,5,0"
-                            VerticalAlignment="Center"
-                            Text="{DynamicResource RunAsStartupText}" />
-                        <ToggleSwitch
-                            IsChecked="{Binding RunAsStartup}"
-                            OffContent="{DynamicResource RunAsStartupOffText}"
-                            OnContent="{DynamicResource RunAsStartupOnText}" 
-                            VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Grid>
-            </Grid>
-            <Grid
-                Grid.Row="2"
-                IsVisible="{Binding ElementName=advCheckBox, Path=IsChecked}"
-                RowDefinitions="auto *">
-                <TextBlock
-                    Margin="10,5"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Text="{DynamicResource AdvanceSettingsTitle}" />
-            </Grid>
+        <Grid
+            Grid.Row="1"
+            Margin="20"
+            VerticalAlignment="Top">
+          <StackPanel Spacing="10">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock
+                  Margin="0,0,5,0"
+                  Width="200"
+                  VerticalAlignment="Center"
+                  Text="{DynamicResource RunAsStartupText}" />
+              <ToggleSwitch
+                  IsChecked="{Binding RunAsStartup}"
+                  OffContent="{DynamicResource RunAsStartupOffText}"
+                  OnContent="{DynamicResource RunAsStartupOnText}"
+                  VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock
+                  Margin="0,0,5,0"
+                  Width="200"
+                  VerticalAlignment="Center"
+                  Text="{DynamicResource LanguageText}" />
+              <ComboBox ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        CornerRadius="5"/>
+            </StackPanel>
+          </StackPanel>
         </Grid>
-    </ScrollViewer>
+      </Grid>
+      <Grid
+          Grid.Row="2"
+          IsVisible="{Binding ElementName=advCheckBox, Path=IsChecked}"
+          RowDefinitions="auto *">
+        <TextBlock
+            Margin="10,5"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="{DynamicResource AdvanceSettingsTitle}" />
+      </Grid>
+    </Grid>
+  </ScrollViewer>
 </UserControl>

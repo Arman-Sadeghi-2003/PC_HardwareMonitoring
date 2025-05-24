@@ -13,7 +13,11 @@
     <system:String x:Key="GeneralSettingsTitle">General</system:String>
     <system:String x:Key="AdvanceSettingsTitle">Advance</system:String>
     <system:String x:Key="RunAsStartupText">Run application as startup:</system:String>
-    <system:String x:Key="RunAsStartupOffText">Run</system:String>
-    <system:String x:Key="RunAsStartupOnText">Don't Run</system:String>
+    <system:String x:Key="RunAsStartupOffText">Don't Run</system:String>
+    <system:String x:Key="RunAsStartupOnText">Run</system:String>
+    <system:String x:Key="LanguageText">Application language:</system:String>
+  
+    
+    <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
 
 </ResourceDictionary>
