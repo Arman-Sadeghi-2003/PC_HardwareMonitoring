@@ -49,6 +49,28 @@
                         SelectedItem="{Binding SelectedLanguage}"
                         CornerRadius="5"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock
+                  Margin="0,0,5,0"
+                  Width="200"
+                  VerticalAlignment="Center"
+                  Text="{DynamicResource ShowNotificationText}" />
+              <ToggleSwitch
+                  IsChecked="{Binding ShowNotification}"
+                  OffContent="{DynamicResource ShowNotificationOffText}"
+                  OnContent="{DynamicResource ShowNotificationOnText}"
+                  VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowNotification}">
+              <TextBlock
+                  Margin="0,0,5,0"
+                  Width="200"
+                  VerticalAlignment="Center"
+                  Text="{DynamicResource WarningTemperatureText}" />
+              <ComboBox ItemsSource="{Binding Temperatures}"
+                        SelectedItem="{Binding SelectedTemperature}"
+                        CornerRadius="5"/>
+            </StackPanel>
           </StackPanel>
         </Grid>
       </Grid>

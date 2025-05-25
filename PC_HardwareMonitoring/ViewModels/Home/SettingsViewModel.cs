@@ -21,12 +21,20 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 
 		[ObservableProperty]
 		private bool runAsStartup;
+		[ObservableProperty]
+		private bool showNotification;
+
+		[ObservableProperty]
+		private ObservableCollection<ComboBoxItem> temperatures;
+
+		[ObservableProperty]
+		private ComboBoxItem? selectedTemperature;
 
 		[ObservableProperty]
 		private ObservableCollection<ComboBoxItem> _languages;
 
 		[ObservableProperty]
-		private ComboBoxItem selectedLanguage;
+		private ComboBoxItem? selectedLanguage;
 
 		#endregion
 
@@ -35,6 +43,7 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 		private void InitializeProperties()
 		{
 			RunAsStartup = settingsModel.RunAsStartup;
+			ShowNotification = settingsModel.ShowNotification;
 			Languages = new();
 
 			foreach (var lang in settingsModel.LanguageCultures)
@@ -48,6 +57,8 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 					SelectedLanguage = Languages.Last();
 			}
 
+			Temperatures = new(settingsModel.WarningTemperatures.Select(t => new ComboBoxItem() { Content = t }));
+			SelectedTemperature = Temperatures.FirstOrDefault(i => (i.Content?.ToString() ?? "") == settingsModel.SelectedWarningTemperature);
 		}
 
 		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -66,6 +77,16 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 				case nameof(RunAsStartup):
 					{
 						settingsModel.RunAsStartup = RunAsStartup;
+					}
+					break;
+				case nameof(ShowNotification):
+					{
+						settingsModel.ShowNotification = ShowNotification;
+					}
+					break;
+				case nameof(SelectedTemperature):
+					{
+						settingsModel.SelectedWarningTemperature = SelectedTemperature?.Content?.ToString() ?? settingsModel.WarningTemperatures.First();
 					}
 					break;
 			}

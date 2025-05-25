@@ -16,6 +16,10 @@
     <system:String x:Key="RunAsStartupOffText">اجرا نشود</system:String>
     <system:String x:Key="RunAsStartupOnText">اجرا شود</system:String>
     <system:String x:Key="LanguageText">زبان برنامه:</system:String>
+    <system:String x:Key="ShowNotificationText">نمایش پیام هشدار برای دما:</system:String>
+    <system:String x:Key="ShowNotificationOffText">عدم نمایش</system:String>
+    <system:String x:Key="ShowNotificationOnText">نمایش</system:String>
+    <system:String x:Key="WarningTemperatureText">حداکثر دما برای نمایش پیام:</system:String>
   
   
     <FlowDirection x:Key="FlowDirection">RightToLeft</FlowDirection>

@@ -16,6 +16,10 @@
     <system:String x:Key="RunAsStartupOffText">Don't Run</system:String>
     <system:String x:Key="RunAsStartupOnText">Run</system:String>
     <system:String x:Key="LanguageText">Application language:</system:String>
+    <system:String x:Key="ShowNotificationText">Show temperature warning notification:</system:String>
+    <system:String x:Key="ShowNotificationOffText">Don't show</system:String>
+    <system:String x:Key="ShowNotificationOnText">Show</system:String>
+    <system:String x:Key="WarningTemperatureText">Max temperature of HW for notification:</system:String>
   
     
     <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
