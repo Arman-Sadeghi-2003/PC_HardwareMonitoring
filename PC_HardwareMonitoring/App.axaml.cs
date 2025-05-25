@@ -3,13 +3,12 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using Avalonia.Markup.Xaml.Styling;
 using PC_HardwareMonitoring.Infrastructure.URLs;
 using PC_HardwareMonitoring.Models.Settings;
+using PC_HardwareMonitoring.Tools.HW;
+using PC_HardwareMonitoring.Tools.Localization;
 using PC_HardwareMonitoring.ViewModels;
 using PC_HardwareMonitoring.Views;
-using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -24,6 +23,8 @@ namespace PC_HardwareMonitoring
 
 			if (!Directory.Exists(FileNames.HWLocalPath))
 				Directory.CreateDirectory(FileNames.HWLocalPath);
+
+			Monitor.Instance.GetCPUInfos();
 		}
 
 		public override void OnFrameworkInitializationCompleted()
@@ -42,44 +43,9 @@ namespace PC_HardwareMonitoring
 			}
 
 			//SetupLocalization();
-			ChangeLanguage(SettingsModel.Instance.selectedLanguage);
+			LocalizationManager.Instance.ChangeLanguage(SettingsModel.Instance.selectedLanguage);
 
 			base.OnFrameworkInitializationCompleted();
-		}
-
-		public void UpdateResourcesForCulture(CultureInfo culture)
-		{
-			// Clear existing localization resources
-			var resources = Resources.MergedDictionaries.Where(x => x is ResourceInclude resourceInclude &&
-				resourceInclude.Source.AbsoluteUri.Contains("/Localization/")).ToList();
-			foreach (var resource in resources)
-			{
-				Resources.MergedDictionaries.Remove(resource);
-			}
-
-			// Add the resource dictionary for the specified culture
-			var resourcePath = $"avares://PC_HardwareMonitoring/Assets/Localization/Strings.{culture.Name}.axaml";
-
-			// Fallback to default language if the specific culture resource doesn't exist
-			if (!Uri.TryCreate(resourcePath, UriKind.Absolute, out _) || culture.Name == "en-US")
-			{
-				resourcePath = "avares://PC_HardwareMonitoring/Assets/Localization/Strings.axaml";
-			}
-
-			var uri = new Uri(resourcePath);
-			var resourceInclude = new ResourceInclude(uri);
-			resourceInclude.Source = uri;  // Set the Source property before adding to MergedDictionaries
-			Resources.MergedDictionaries.Add(resourceInclude);
-		}
-
-		// Method to change language at runtime
-		public void ChangeLanguage(string languageCode)
-		{
-			var newCulture = new CultureInfo(languageCode);
-			CultureInfo.DefaultThreadCurrentCulture = newCulture;
-			CultureInfo.DefaultThreadCurrentUICulture = newCulture;
-
-			UpdateResourcesForCulture(newCulture);
 		}
 
 		private void DisableAvaloniaDataAnnotationValidation()

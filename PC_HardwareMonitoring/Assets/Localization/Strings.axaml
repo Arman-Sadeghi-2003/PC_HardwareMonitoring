@@ -22,6 +22,27 @@
     <system:String x:Key="WarningTemperatureText">Max temperature of HW for notification:</system:String>
     <system:String x:Key="RefreshIntervalText">Refresh interval:</system:String>
 
-  <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
+    <!-- CPU features name -->
+    <system:String x:Key="CPUNameText">Name:</system:String>
+    <system:String x:Key="CPUManufacturerText">Manufacturer:</system:String>
+    <system:String x:Key="CPUDescriptionText">Description:</system:String>
+    <system:String x:Key="CPUProcessorIdText">Processor Id:</system:String>
+    <system:String x:Key="CPUArchitectureText">Architecture:</system:String>
+    <system:String x:Key="CPUNumberOfCoresText">Number Of Cores:</system:String>
+    <system:String x:Key="CPUNumberOfLogicalProcessorsText">Number Of Logical Processors:</system:String>
+    <system:String x:Key="CPUMaxClockSpeedText">Max Clock Speed:</system:String>
+    <system:String x:Key="CPUCurrentClockSpeedText">Current Clock Speed:</system:String>
+    <system:String x:Key="CPUSocketDesignationText">Socket Designation:</system:String>
+    <system:String x:Key="CPUL2CacheSizeText">L2 Cache Size:</system:String>
+    <system:String x:Key="CPUL3CacheSizeText">L3 Cache Size:</system:String>
+    <system:String x:Key="CPUThreadCountText">Thread Count:</system:String>
+    <system:String x:Key="CPUStatusText">Status:</system:String>
+    <system:String x:Key="CPUVirtualizationEnabledText">Virtualization Enabled:</system:String>
+    <system:String x:Key="CPUSecondLevelAddressTranslationText">Second Level Address Translation:</system:String>
+    <system:String x:Key="CPUDataWidthText">Data Width:</system:String>
+    <system:String x:Key="CPUAddressWidthText">Address Width:</system:String>
+    <system:String x:Key="CPURevisionText">Revision:</system:String>
 
+
+  <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
 </ResourceDictionary>

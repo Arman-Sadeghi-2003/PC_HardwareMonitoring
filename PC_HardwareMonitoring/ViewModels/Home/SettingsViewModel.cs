@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.Tools.Helpers;
+using PC_HardwareMonitoring.Tools.Localization;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -90,7 +91,7 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 				case nameof(SelectedLanguage):
 					{
 						var iso = SelectedLanguage?.Tag?.ToString() ?? "en-US";
-						((App)App.Current).ChangeLanguage(iso);
+						LocalizationManager.Instance.ChangeLanguage(iso);
 						settingsModel.selectedLanguage = iso;
 					}
 					break;

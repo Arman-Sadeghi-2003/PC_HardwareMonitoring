@@ -21,7 +21,27 @@
     <system:String x:Key="ShowNotificationOnText">نمایش</system:String>
     <system:String x:Key="WarningTemperatureText">حداکثر دما برای نمایش پیام:</system:String>
     <system:String x:Key="RefreshIntervalText">زمان بروزرسانی:</system:String>
+
+    <!-- CPU features name -->
+    <system:String x:Key="CPUNameText">نام:</system:String>
+    <system:String x:Key="CPUManufacturerText">سازنده:</system:String>
+    <system:String x:Key="CPUDescriptionText">توضیحات:</system:String>
+    <system:String x:Key="CPUProcessorIdText">شناسه پردازنده:</system:String>
+    <system:String x:Key="CPUArchitectureText">معماری:</system:String>
+    <system:String x:Key="CPUNumberOfCoresText">تعداد هسته‌ها:</system:String>
+    <system:String x:Key="CPUNumberOfLogicalProcessorsText">تعداد پردازنده‌های منطقی:</system:String>
+    <system:String x:Key="CPUMaxClockSpeedText">حداکثر سرعت کلاک:</system:String>
+    <system:String x:Key="CPUCurrentClockSpeedText">سرعت کلاک فعلی:</system:String>
+    <system:String x:Key="CPUSocketDesignationText">نوع سوکت:</system:String>
+    <system:String x:Key="CPUL2CacheSizeText">حجم کش L2:</system:String>
+    <system:String x:Key="CPUL3CacheSizeText">حجم کش L3:</system:String>
+    <system:String x:Key="CPUThreadCountText">تعداد رشته‌ها (Threads):</system:String>
+    <system:String x:Key="CPUStatusText">وضعیت:</system:String>
+    <system:String x:Key="CPUVirtualizationEnabledText">مجازی‌سازی فعال:</system:String>
+    <system:String x:Key="CPUSecondLevelAddressTranslationText">ترجمه آدرس سطح دوم:</system:String>
+    <system:String x:Key="CPUDataWidthText">عرض داده (Data Width):</system:String>
+    <system:String x:Key="CPUAddressWidthText">عرض آدرس (Address Width):</system:String>
+    <system:String x:Key="CPURevisionText">نسخه (Revision):</system:String>
   
     <FlowDirection x:Key="FlowDirection">RightToLeft</FlowDirection>
-
 </ResourceDictionary>

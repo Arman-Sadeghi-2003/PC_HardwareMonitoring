@@ -1,5 +1,7 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using PC_HardwareMonitoring.Infrastructure.NotificationManager;
+using PC_HardwareMonitoring.Models.CPU;
+using PC_HardwareMonitoring.Tools.Global;
 using System;
 using System.Management;
 using System.Text;
@@ -110,48 +112,45 @@ namespace PC_HardwareMonitoring.Tools.HW
 			return builder.ToString();
 		}
 
-		public string GetCPUInfos()
+		public void GetCPUInfos()
 		{
-			var builder = new StringBuilder();
-
 			try
 			{
-				builder.AppendLine("CPU Information:\n");
-
 				using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
 				{
 					foreach (ManagementObject mo in searcher.Get())
 					{
-						builder.AppendLine($"Name: {mo["Name"]}");
-						builder.AppendLine($"Manufacturer: {mo["Manufacturer"]}");
-						builder.AppendLine($"Description: {mo["Description"]}");
-						builder.AppendLine($"Processor Id: {mo["ProcessorId"]}");
-						builder.AppendLine($"Architecture: {mo["Architecture"]}");
-						builder.AppendLine($"Number Of Cores: {mo["NumberOfCores"]}");
-						builder.AppendLine($"Number Of Logical Processors: {mo["NumberOfLogicalProcessors"]}");
-						builder.AppendLine($"Max Clock Speed: {mo["MaxClockSpeed"]} MHz");
-						builder.AppendLine($"Current Clock Speed: {mo["CurrentClockSpeed"]} MHz");
-						builder.AppendLine($"Socket Designation: {mo["SocketDesignation"]}");
-						builder.AppendLine($"L2 Cache Size: {mo["L2CacheSize"]} KB");
-						builder.AppendLine($"L3 Cache Size: {mo["L3CacheSize"]} KB");
-						builder.AppendLine($"Thread Count: {mo["ThreadCount"]}");
-						builder.AppendLine($"Status: {mo["Status"]}");
-						builder.AppendLine($"Virtualization Enabled: {mo["VirtualizationFirmwareEnabled"]}");
-						builder.AppendLine($"Second Level Address Translation: {mo["SecondLevelAddressTranslationExtensions"]}");
-						builder.AppendLine($"Data Width: {mo["DataWidth"]} bits");
-						builder.AppendLine($"Address Width: {mo["AddressWidth"]} bits");
-						builder.AppendLine($"Revision: {mo["Revision"]}");
-						builder.AppendLine();
+						var model = new CPU_Model()
+						{
+							Name = mo["Name"]?.ToString() ?? "cpu name",
+							Manufacturer = mo["Manufacturer"]?.ToString() ?? "",
+							Description = mo["Description"]?.ToString() ?? "",
+							ProcessorId = mo["ProcessorId"]?.ToString() ?? "",
+							Architecture = mo["Architecture"]?.ToString() ?? "",
+							NumberOfCores = mo["NumberOfCores"]?.ToString() ?? "",
+							NumberOfLogicalProcessors = mo["NumberOfLogicalProcessors"]?.ToString() ?? "",
+							MaxClockSpeed = $"{mo["MaxClockSpeed"]} MHz",
+							CurrentClockSpeed = $"{mo["CurrentClockSpeed"]} MHz",
+							SocketDesignation = mo["SocketDesignation"]?.ToString() ?? "",
+							L2CacheSize = $"{mo["L2CacheSize"]} KB",
+							L3CacheSize = $"{mo["L3CacheSize"]} KB",
+							ThreadCount = mo["ThreadCount"]?.ToString() ?? "",
+							Status = mo["Status"]?.ToString() ?? "",
+							VirtualizationEnabled = mo["VirtualizationFirmwareEnabled"]?.ToString() ?? "",
+							SecondLevelAddressTranslation = mo["SecondLevelAddressTranslationExtensions"]?.ToString() ?? "",
+							DataWidth = $"{mo["DataWidth"]} bits",
+							AddressWidth = $"{mo["AddressWidth"]} bits",
+							Revision = mo["Revision"]?.ToString() ?? "",
+						};
+
+						Data.Instance.CPUs.Add(model);
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				builder.Clear();
-				builder.AppendLine(ex.Message);
+				NotificationGenerator.Instance.ShowExceptionMessage(App.MainTopLevel, ex.Message);
 			}
-
-			return builder.ToString();
 		}
 
 		public string GetCPUTemp()

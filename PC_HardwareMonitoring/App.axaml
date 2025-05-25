@@ -10,12 +10,6 @@
         <local:ViewLocator />
     </Application.DataTemplates>
 
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries />
-        </ResourceDictionary>
-    </Application.Resources>
-
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="/Assets/Styles/ButtonStyles.axaml" />

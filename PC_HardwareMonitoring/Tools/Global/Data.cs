@@ -1,4 +1,5 @@
 ﻿using PC_HardwareMonitoring.Models.CPU;
+using System.Collections.Generic;
 
 namespace PC_HardwareMonitoring.Tools.Global
 {
@@ -6,14 +7,13 @@ namespace PC_HardwareMonitoring.Tools.Global
 	{
 		// ----> Singleton instance
 
-		private Data()
-		{ }
+		private Data() { }
 
 		private static Data instance;
 		public static Data Instance => instance ?? (instance = new Data());
 
 		// ----> Methods
 
-		public CPU_Model CPU { get; set; }
+		public List<CPU_Model> CPUs { get; set; } = new();
 	}
 }
