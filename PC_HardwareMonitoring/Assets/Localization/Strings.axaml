@@ -20,8 +20,8 @@
     <system:String x:Key="ShowNotificationOffText">Don't show</system:String>
     <system:String x:Key="ShowNotificationOnText">Show</system:String>
     <system:String x:Key="WarningTemperatureText">Max temperature of HW for notification:</system:String>
-  
-    
-    <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
+    <system:String x:Key="RefreshIntervalText">Refresh interval:</system:String>
+
+  <FlowDirection x:Key="FlowDirection">LeftToRight</FlowDirection>
 
 </ResourceDictionary>

@@ -4,10 +4,13 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
+using PC_HardwareMonitoring.Infrastructure.URLs;
+using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.ViewModels;
 using PC_HardwareMonitoring.Views;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 
 namespace PC_HardwareMonitoring
@@ -18,6 +21,9 @@ namespace PC_HardwareMonitoring
 		public override void Initialize()
 		{
 			AvaloniaXamlLoader.Load(this);
+
+			if (!Directory.Exists(FileNames.HWLocalPath))
+				Directory.CreateDirectory(FileNames.HWLocalPath);
 		}
 
 		public override void OnFrameworkInitializationCompleted()
@@ -35,21 +41,10 @@ namespace PC_HardwareMonitoring
 				desktop.MainWindow = mainWindow;
 			}
 
-			SetupLocalization();
-
+			//SetupLocalization();
+			ChangeLanguage(SettingsModel.Instance.selectedLanguage);
 
 			base.OnFrameworkInitializationCompleted();
-		}
-
-		private void SetupLocalization()
-		{
-			// Set the default culture
-			var culture = new CultureInfo("en-US");
-			CultureInfo.DefaultThreadCurrentCulture = culture;
-			CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-			// Load the resources for the current culture
-			UpdateResourcesForCulture(culture);
 		}
 
 		public void UpdateResourcesForCulture(CultureInfo culture)

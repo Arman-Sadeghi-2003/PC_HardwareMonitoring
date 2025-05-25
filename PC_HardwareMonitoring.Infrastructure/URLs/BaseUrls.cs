@@ -4,6 +4,6 @@
 	{
 		private static string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-		protected static string HWLocalPath = Path.Combine(localPath, "PC_HW_Monitoring (AILC)");
+		public static string HWLocalPath = Path.Combine(localPath, "PC_HW_Monitoring (AILC)");
 	}
 }

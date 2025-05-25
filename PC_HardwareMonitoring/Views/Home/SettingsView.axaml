@@ -9,6 +9,15 @@
     d:DesignWidth="800"
     x:DataType="vm:SettingsViewModel"
     mc:Ignorable="d">
+
+  <UserControl.Styles>
+    <Style Selector="TextBlock.content">
+      <Setter Property="Margin" Value="0,0,5,0" />
+      <Setter Property="Width" Value="270" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+  </UserControl.Styles>
+
   <ScrollViewer>
     <Grid RowDefinitions="50 auto auto">
       <CheckBox
@@ -29,9 +38,7 @@
           <StackPanel Spacing="10">
             <StackPanel Orientation="Horizontal">
               <TextBlock
-                  Margin="0,0,5,0"
-                  Width="200"
-                  VerticalAlignment="Center"
+                  Classes="content"
                   Text="{DynamicResource RunAsStartupText}" />
               <ToggleSwitch
                   IsChecked="{Binding RunAsStartup}"
@@ -41,19 +48,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
               <TextBlock
-                  Margin="0,0,5,0"
-                  Width="200"
-                  VerticalAlignment="Center"
+                  Classes="content"
                   Text="{DynamicResource LanguageText}" />
               <ComboBox ItemsSource="{Binding Languages}"
                         SelectedItem="{Binding SelectedLanguage}"
-                        CornerRadius="5"/>
+                        CornerRadius="5" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
               <TextBlock
-                  Margin="0,0,5,0"
-                  Width="200"
-                  VerticalAlignment="Center"
+                  Classes="content"
                   Text="{DynamicResource ShowNotificationText}" />
               <ToggleSwitch
                   IsChecked="{Binding ShowNotification}"
@@ -63,13 +66,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowNotification}">
               <TextBlock
-                  Margin="0,0,5,0"
-                  Width="200"
-                  VerticalAlignment="Center"
+                  Classes="content"
                   Text="{DynamicResource WarningTemperatureText}" />
               <ComboBox ItemsSource="{Binding Temperatures}"
                         SelectedItem="{Binding SelectedTemperature}"
-                        CornerRadius="5"/>
+                        CornerRadius="5" />
             </StackPanel>
           </StackPanel>
         </Grid>
@@ -83,6 +84,21 @@
             FontSize="20"
             FontWeight="Bold"
             Text="{DynamicResource AdvanceSettingsTitle}" />
+        <Grid
+           Grid.Row="1"
+           Margin="20"
+           VerticalAlignment="Top">
+          <StackPanel Spacing="10">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock
+                  Classes="content"
+                  Text="{DynamicResource RefreshIntervalText}" />
+              <ComboBox ItemsSource="{Binding Intervals}"
+                        SelectedItem="{Binding SelectedInterval}"
+                        CornerRadius="5" />
+            </StackPanel>
+          </StackPanel>
+        </Grid>
       </Grid>
     </Grid>
   </ScrollViewer>

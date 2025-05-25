@@ -1,6 +1,8 @@
 ﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Models.Settings;
+using PC_HardwareMonitoring.Tools.Helpers;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 
 		#region Properties
 
+		#region General
 		[ObservableProperty]
 		private bool runAsStartup;
 		[ObservableProperty]
@@ -35,6 +38,15 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 
 		[ObservableProperty]
 		private ComboBoxItem? selectedLanguage;
+		#endregion General
+
+		#region Advanced
+		[ObservableProperty]
+		private ObservableCollection<ComboBoxItem> intervals;
+
+		[ObservableProperty]
+		private ComboBoxItem selectedInterval;
+		#endregion
 
 		#endregion
 
@@ -42,6 +54,8 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 
 		private void InitializeProperties()
 		{
+			// General
+
 			RunAsStartup = settingsModel.RunAsStartup;
 			ShowNotification = settingsModel.ShowNotification;
 			Languages = new();
@@ -59,6 +73,12 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 
 			Temperatures = new(settingsModel.WarningTemperatures.Select(t => new ComboBoxItem() { Content = t }));
 			SelectedTemperature = Temperatures.FirstOrDefault(i => (i.Content?.ToString() ?? "") == settingsModel.SelectedWarningTemperature);
+
+			// Advanced
+			int intervalC = 1;
+			Intervals = new(settingsModel.RefreshIntervals.Select(i => new ComboBoxItem() { Content = i, Tag = intervalC++ }));
+
+			SelectedInterval = Intervals[settingsModel.SelectedRefreshInterval - 1];
 		}
 
 		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -89,7 +109,13 @@ namespace PC_HardwareMonitoring.ViewModels.Home
 						settingsModel.SelectedWarningTemperature = SelectedTemperature?.Content?.ToString() ?? settingsModel.WarningTemperatures.First();
 					}
 					break;
+				case nameof(SelectedInterval):
+					{
+						settingsModel.SelectedRefreshInterval = Convert.ToInt32(SelectedInterval.Tag);
+					}
+					break;
 			}
+			FileSerializer.SaveSettings();
 		}
 
 		#endregion

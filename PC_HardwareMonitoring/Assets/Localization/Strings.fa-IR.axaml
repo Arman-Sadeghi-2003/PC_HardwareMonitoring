@@ -20,7 +20,7 @@
     <system:String x:Key="ShowNotificationOffText">عدم نمایش</system:String>
     <system:String x:Key="ShowNotificationOnText">نمایش</system:String>
     <system:String x:Key="WarningTemperatureText">حداکثر دما برای نمایش پیام:</system:String>
-  
+    <system:String x:Key="RefreshIntervalText">زمان بروزرسانی:</system:String>
   
     <FlowDirection x:Key="FlowDirection">RightToLeft</FlowDirection>
 
