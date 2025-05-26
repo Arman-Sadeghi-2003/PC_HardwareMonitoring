@@ -5,6 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+    xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:CPUTabViewModel"
@@ -65,6 +67,13 @@
           </Grid>
         </ScrollViewer>
       </Border>
+
+      <Grid RowDefinitions="* *">
+        <!-- Usage -->
+        <lvc:CartesianChart />
+        <!-- Temperature -->
+        <lvc:CartesianChart />
+      </Grid>
     </Grid>
   </ScrollViewer>
 </UserControl>
