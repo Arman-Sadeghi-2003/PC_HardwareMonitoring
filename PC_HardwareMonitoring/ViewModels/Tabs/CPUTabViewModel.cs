@@ -1,9 +1,17 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Documents;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using PC_HardwareMonitoring.Models.CPU;
+using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.Tools.Global;
 using PC_HardwareMonitoring.Tools.Localization;
+using SkiaSharp;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,11 +20,25 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 {
 	public partial class CPUTabViewModel : ViewModelBase
 	{
+		private readonly DispatcherTimer timer;
+
 		[ObservableProperty]
 		private ObservableCollection<ComboBoxItem> _CPU_Models;
 
 		[ObservableProperty]
 		private ComboBoxItem? selected_CPU;
+
+		// CPU Charts model
+
+		[ObservableProperty]
+		public ObservableCollection<ISeries> _CPUUsageSeries;
+		[ObservableProperty]
+		public ObservableCollection<ISeries> _CPUTemperatureSeries;
+
+		[ObservableProperty]
+		public ObservableCollection<Axis> _XAxis;
+		[ObservableProperty]
+		public ObservableCollection<Axis> _YAxis;
 
 		#region Features
 
@@ -63,6 +85,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 		public CPUTabViewModel()
 		{
+			timer = new();
 			initialize();
 		}
 
@@ -71,6 +94,72 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			int cpuCounter = 1;
 			CPU_Models = new(Data.Instance.CPUs.Select(c => new ComboBoxItem() { Content = $"CPU #{cpuCounter++}", Tag = c }));
 			Selected_CPU = CPU_Models.FirstOrDefault();
+
+			// Setup initial chart series
+			CPUUsageSeries = new ObservableCollection<ISeries>
+		{
+			new LineSeries<ObservablePoint>
+			{
+				Values = new ObservableCollection<ObservablePoint>(),
+				Fill = null,
+				Stroke = new SolidColorPaint(SKColors.Blue, 2)
+			}
+		};
+
+			CPUTemperatureSeries = new ObservableCollection<ISeries>
+		{
+			new LineSeries<ObservablePoint>
+			{
+				Values = new ObservableCollection<ObservablePoint>(),
+				Fill = null,
+				Stroke = new SolidColorPaint(SKColors.Red, 2)
+			}
+		};
+
+			XAxis = new ObservableCollection<Axis>
+		{
+			new Axis { Labeler = value => DateTime.Now.AddSeconds(value).ToString("HH:mm:ss"), MinLimit = 0, MaxLimit = 60 }
+		};
+
+			YAxis = new ObservableCollection<Axis> { new Axis() };
+
+			// Simulate update
+			timer.Interval = TimeSpan.FromSeconds(SettingsModel.Instance.SelectedRefreshInterval);
+			timer.Tick += Timer_Tick;
+			timer.Start();
+		}
+
+		private void Timer_Tick(object? sender, EventArgs e)
+		{
+			var usage = GetCurrentCPUUsage();          // e.g., return 40.3
+			var temperature = GetCurrentCPUTemperature(); // e.g., return 68.2
+			int _timeCounter = 0;
+
+			Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+			{
+				var usagePoints = (ObservableCollection<ObservablePoint>)CPUUsageSeries[0].Values;
+				var tempPoints = (ObservableCollection<ObservablePoint>)CPUTemperatureSeries[0].Values;
+
+				usagePoints.Add(new ObservablePoint(_timeCounter, usage));
+				tempPoints.Add(new ObservablePoint(_timeCounter, temperature));
+
+				// Keep last 60 points (1 minute)
+				if (usagePoints.Count > 60) usagePoints.RemoveAt(0);
+				if (tempPoints.Count > 60) tempPoints.RemoveAt(0);
+
+				_timeCounter++;
+			});
+		}
+
+		private double GetCurrentCPUUsage()
+		{
+			// Fetch from your monitoring service or mock it
+			return new Random().NextDouble() * 100;
+		}
+
+		private double GetCurrentCPUTemperature()
+		{
+			return 50 + new Random().NextDouble() * 20;
 		}
 
 		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
