@@ -21,6 +21,7 @@
     <system:String x:Key="ShowNotificationOnText">Show</system:String>
     <system:String x:Key="WarningTemperatureText">Max temperature of HW for notification:</system:String>
     <system:String x:Key="RefreshIntervalText">Refresh interval:</system:String>
+    <system:String x:Key="SelectedCPUText">Selected CPU:</system:String>
 
     <!-- CPU features name -->
     <system:String x:Key="CPUNameText">Name:</system:String>

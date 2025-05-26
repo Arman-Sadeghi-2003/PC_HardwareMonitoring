@@ -21,8 +21,9 @@
     <system:String x:Key="ShowNotificationOnText">نمایش</system:String>
     <system:String x:Key="WarningTemperatureText">حداکثر دما برای نمایش پیام:</system:String>
     <system:String x:Key="RefreshIntervalText">زمان بروزرسانی:</system:String>
+    <system:String x:Key="SelectedCPUText">CPU انتخاب شده:</system:String>
 
-    <!-- CPU features name -->
+  <!-- CPU features name -->
     <system:String x:Key="CPUNameText">نام:</system:String>
     <system:String x:Key="CPUManufacturerText">سازنده:</system:String>
     <system:String x:Key="CPUDescriptionText">توضیحات:</system:String>

@@ -16,8 +16,8 @@
         Orientation="Horizontal"
         Spacing="5"
         HorizontalAlignment="Center">
-        <TextBlock />
-        <ComboBox />
+        <TextBlock Text="{DynamicResource SelectedCPUText}" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding CPU_Models}" SelectedItem="{Binding Selected_CPU}"/>
       </StackPanel>
       <Border
         Grid.Row="1"
@@ -31,32 +31,37 @@
                 RowDefinitions="auto auto auto auto auto auto auto"
                 ColumnDefinitions="* * *"
                 RowSpacing="5">
+            <Grid.Styles>
+              <Style Selector="TextBlock">
+                <Setter Property="Padding" Value="8"/>
+              </Style>
+            </Grid.Styles>
             <!-- row one -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding CPU_Name}" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CPU_Manufacturer}" />
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding CPU_Description}" />
-            <!-- row two -->
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding CPU_ProcessorId}" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CPU_Architecture}" />
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CPU_NumberOfCores}" />
-            <!-- row three -->
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding CPU_NumberOfLogicalProcessors}" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CPU_MaxClockSpeed}" />
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CPU_CurrentClockSpeed}" />
-            <!-- row four -->
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding CPU_SocketDesignation}" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CPU_L2CacheSize}" />
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CPU_L3CacheSize}" />
-            <!-- row five -->
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding CPU_ThreadCount}" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CPU_Status}" />
-            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CPU_VirtualizationEnabled}" />
-            <!-- row six -->
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding CPU_SecondLevelAddressTranslation}" />
-            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding CPU_DataWidth}" />
-            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CPU_AddressWidth}" />
-            <!-- row six -->
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding CPU_Revision}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Inlines="{Binding CPU_Name}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Inlines="{Binding CPU_Manufacturer}" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Inlines="{Binding CPU_Description}" />
+            <!-- row two -->                        
+            <TextBlock Grid.Row="1" Grid.Column="0" Inlines="{Binding CPU_ProcessorId}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Inlines="{Binding CPU_Architecture}" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Inlines="{Binding CPU_NumberOfCores}" />
+            <!-- row three -->                      
+            <TextBlock Grid.Row="2" Grid.Column="0" Inlines="{Binding CPU_NumberOfLogicalProcessors}" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Inlines="{Binding CPU_MaxClockSpeed}" />
+            <TextBlock Grid.Row="2" Grid.Column="2" Inlines="{Binding CPU_CurrentClockSpeed}" />
+            <!-- row four -->                       
+            <TextBlock Grid.Row="3" Grid.Column="0" Inlines="{Binding CPU_SocketDesignation}" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Inlines="{Binding CPU_L2CacheSize}" />
+            <TextBlock Grid.Row="3" Grid.Column="2" Inlines="{Binding CPU_L3CacheSize}" />
+            <!-- row five -->                       
+            <TextBlock Grid.Row="4" Grid.Column="0" Inlines="{Binding CPU_ThreadCount}" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Inlines="{Binding CPU_Status}" />
+            <TextBlock Grid.Row="4" Grid.Column="2" Inlines="{Binding CPU_VirtualizationEnabled}" />
+            <!-- row six -->                        
+            <TextBlock Grid.Row="5" Grid.Column="0" Inlines="{Binding CPU_SecondLevelAddressTranslation}" />
+            <TextBlock Grid.Row="5" Grid.Column="1" Inlines="{Binding CPU_DataWidth}" />
+            <TextBlock Grid.Row="5" Grid.Column="2" Inlines="{Binding CPU_AddressWidth}" />
+            <!-- row six -->                        
+            <TextBlock Grid.Row="6" Grid.Column="0" Inlines="{Binding CPU_Revision}" />
           </Grid>
         </ScrollViewer>
       </Border>

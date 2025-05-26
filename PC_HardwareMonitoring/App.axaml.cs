@@ -21,6 +21,8 @@ namespace PC_HardwareMonitoring
 		{
 			AvaloniaXamlLoader.Load(this);
 
+			LocalizationManager.Instance.ChangeLanguage(SettingsModel.Instance.selectedLanguage);
+
 			if (!Directory.Exists(FileNames.HWLocalPath))
 				Directory.CreateDirectory(FileNames.HWLocalPath);
 
@@ -41,9 +43,6 @@ namespace PC_HardwareMonitoring
 				MainTopLevel = MainWindow.GetTopLevel(mainWindow);
 				desktop.MainWindow = mainWindow;
 			}
-
-			//SetupLocalization();
-			LocalizationManager.Instance.ChangeLanguage(SettingsModel.Instance.selectedLanguage);
 
 			base.OnFrameworkInitializationCompleted();
 		}

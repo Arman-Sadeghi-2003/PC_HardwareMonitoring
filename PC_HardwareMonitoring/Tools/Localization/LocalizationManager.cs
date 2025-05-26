@@ -1,4 +1,5 @@
-﻿using Avalonia.Markup.Xaml.Styling;
+﻿using Avalonia.Controls;
+using Avalonia.Markup.Xaml.Styling;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -52,7 +53,9 @@ namespace PC_HardwareMonitoring.Tools.Localization
 		{
 			try
 			{
-				var resource = App.Current?.Resources[key];
+				object? value = new();
+				App.Current?.TryFindResource(key, out value);
+				var resource = value?.ToString();
 				if (resource != null && !resource.ToString().Equals("Unset"))
 					return resource.ToString();
 			}
