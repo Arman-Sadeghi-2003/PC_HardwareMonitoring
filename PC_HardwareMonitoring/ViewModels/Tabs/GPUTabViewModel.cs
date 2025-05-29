@@ -27,7 +27,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 		private void Timer_Tick(object? sender, System.EventArgs e)
 		{
-			//GPU_Temp = Monitor.Instance.GetGPUTemp();
+			//GPU_Temp = Monitor.Instance.GetCPUTemp();
 		}
 	}
 }

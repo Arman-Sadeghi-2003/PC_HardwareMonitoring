@@ -31,12 +31,14 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		// CPU Charts model
 
 		[ObservableProperty]
-		public ObservableCollection<ISeries> _CPUUsageSeries;
+		public ISeries[] _CPUUsageSeries;
+
 		[ObservableProperty]
 		public ObservableCollection<ISeries> _CPUTemperatureSeries;
 
 		[ObservableProperty]
 		public ObservableCollection<Axis> _XAxis;
+
 		[ObservableProperty]
 		public ObservableCollection<Axis> _YAxis;
 
@@ -44,44 +46,62 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 		[ObservableProperty]
 		private InlineCollection _CPU_Name;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_Manufacturer;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_Description;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_ProcessorId;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_Architecture;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_NumberOfCores;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_NumberOfLogicalProcessors;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_MaxClockSpeed;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_CurrentClockSpeed;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_SocketDesignation;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_L2CacheSize;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_L3CacheSize;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_ThreadCount;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_Status;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_VirtualizationEnabled;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_SecondLevelAddressTranslation;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_DataWidth;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_AddressWidth;
+
 		[ObservableProperty]
 		private InlineCollection _CPU_Revision;
 
-		#endregion
+		#endregion Features
 
 		public CPUTabViewModel()
 		{
@@ -96,15 +116,15 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			Selected_CPU = CPU_Models.FirstOrDefault();
 
 			// Setup initial chart series
-			CPUUsageSeries = new ObservableCollection<ISeries>
-		{
-			new LineSeries<ObservablePoint>
+			CPUUsageSeries = new ISeries[]
 			{
-				Values = new ObservableCollection<ObservablePoint>(),
-				Fill = null,
-				Stroke = new SolidColorPaint(SKColors.Blue, 2)
-			}
-		};
+				new LineSeries<double>
+				{
+					Values = new double[] {2,5,3,5,-2,0.5,-6,8,5,7,9,8,7,15,20,10,58,63,25,54,64,50,40,30,35,45,55,65},
+					Fill = null,
+					Stroke = new SolidColorPaint(SKColors.Blue, 2)
+				}
+			};
 
 			CPUTemperatureSeries = new ObservableCollection<ISeries>
 		{
@@ -137,14 +157,14 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 			Avalonia.Threading.Dispatcher.UIThread.Post(() =>
 			{
-				var usagePoints = (ObservableCollection<ObservablePoint>)CPUUsageSeries[0].Values;
+				//var usagePoints = (ObservableCollection<ObservablePoint>)CPUUsageSeries[0].Values;
 				var tempPoints = (ObservableCollection<ObservablePoint>)CPUTemperatureSeries[0].Values;
 
-				usagePoints.Add(new ObservablePoint(_timeCounter, usage));
+				//usagePoints.Add(new ObservablePoint(_timeCounter, usage));
 				tempPoints.Add(new ObservablePoint(_timeCounter, temperature));
 
 				// Keep last 60 points (1 minute)
-				if (usagePoints.Count > 60) usagePoints.RemoveAt(0);
+				//if (usagePoints.Count > 60) usagePoints.RemoveAt(0);
 				if (tempPoints.Count > 60) tempPoints.RemoveAt(0);
 
 				_timeCounter++;

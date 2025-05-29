@@ -68,23 +68,20 @@
         </ScrollViewer>
       </Border>
 
-      <Grid RowDefinitions="* *">
+      <Grid ColumnDefinitions="* *"
+            Grid.Row="2">
         <!-- Usage -->
         <lvc:CartesianChart
-            Grid.Row="0"
-            Series="{Binding CPUUsageSeries}"
-            XAxes="{Binding XAxis}"
-            YAxes="{Binding YAxis}"
-            LegendPosition="Hidden"
-            Margin="0,10" />
+           AnimationsSpeed="00:00:1"
+           EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.BounceOut}}"
+           FlowDirection="LeftToRight"
+           Series="{Binding CPUUsageSeries}"
+           ZoomMode="X" />
 
         <!-- Temperature -->
         <lvc:CartesianChart
-            Grid.Row="1"
+            Grid.Column="1"
             Series="{Binding CPUTemperatureSeries}"
-            XAxes="{Binding XAxis}"
-            YAxes="{Binding YAxis}"
-            LegendPosition="Hidden"
             Margin="0,10" />
       </Grid>
     </Grid>

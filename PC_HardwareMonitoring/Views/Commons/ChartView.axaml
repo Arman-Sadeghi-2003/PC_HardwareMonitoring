@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Commons"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+             x:Class="PC_HardwareMonitoring.Views.Commons.ChartView"
+             x:DataType="vm:ChartViewModel">
+  
+  <lvc:CartesianChart 
+      Series="{Binding Series}"
+      AnimationsSpeed="00:00:1"
+      EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.PolinominalIn}}"
+      ZoomMode="PanX"/>
+  
+</UserControl>
