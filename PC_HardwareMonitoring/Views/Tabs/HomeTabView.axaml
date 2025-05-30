@@ -13,12 +13,6 @@
     mc:Ignorable="d">
 
     <Grid ColumnDefinitions="* *" RowDefinitions="* *">
-        <lvc:CartesianChart
-            AnimationsSpeed="00:00:1"
-            EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.BounceOut}}"
-            FlowDirection="LeftToRight"
-            Series="{Binding CPU_Series}"
-            XAxes="{Binding XAxis}"
-            ZoomMode="X" />
+         <TransitioningContentControl Content="{Binding TestChart}"/>
     </Grid>
 </UserControl>

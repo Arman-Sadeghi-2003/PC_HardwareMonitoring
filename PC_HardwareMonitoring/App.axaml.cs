@@ -3,13 +3,11 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using PC_HardwareMonitoring.Infrastructure.URLs;
 using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.Tools.HW;
 using PC_HardwareMonitoring.Tools.Localization;
 using PC_HardwareMonitoring.ViewModels;
 using PC_HardwareMonitoring.Views;
-using System.IO;
 using System.Linq;
 
 namespace PC_HardwareMonitoring
@@ -22,9 +20,6 @@ namespace PC_HardwareMonitoring
 			AvaloniaXamlLoader.Load(this);
 
 			LocalizationManager.Instance.ChangeLanguage(SettingsModel.Instance.selectedLanguage);
-
-			if (!Directory.Exists(FileNames.HWLocalPath))
-				Directory.CreateDirectory(FileNames.HWLocalPath);
 
 			Monitor.Instance.GetCPUInfos();
 		}
