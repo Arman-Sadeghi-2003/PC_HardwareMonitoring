@@ -8,6 +8,7 @@ using PC_HardwareMonitoring.Tools.Global;
 using PC_HardwareMonitoring.Tools.Localization;
 using PC_HardwareMonitoring.ViewModels.Commons;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 
 		[ObservableProperty]
 		private ComboBoxItem? selected_CPU;
+
+		[ObservableProperty]
+		private ObservableCollection<ComboBoxItem> _CPUCores;
+
+		[ObservableProperty]
+		private ComboBoxItem? selected_CPUCore;
 
 		// CPU Charts model
 
@@ -104,9 +111,16 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			CPU_Models = new(Data.Instance.CPUs.Select(c => new ComboBoxItem() { Content = $"CPU #{cpuCounter++}", Tag = c }));
 			Selected_CPU = CPU_Models.FirstOrDefault();
 
+			CPUCores = new(((Selected_CPU?.Tag as CPU_Model)?.CoreNames ?? new List<string>()).Select(i => new ComboBoxItem() { Content = i }));
+			Selected_CPUCore = CPUCores.FirstOrDefault();
+
 			// Setup initial chart series
-			CPU_Temperature = new(new() { 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65, 80, 85, 79, 76, 75, 73, 77, 78, 70 });
-			CPU_Usage = new(new() { 2, 5, 3, 5, 8, 5, 7, 9, 8, 7, 15, 20, 10, 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65 });
+			CPU_Temperature = new(new() { 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65, 80, 85, 79, 76, 75, 73, 77, 78, 70 }, "Temperature",
+				new()
+				{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" });
+			CPU_Usage = new(new() { 2, 5, 3, 5, 8, 5, 7, 9, 8, 7, 15, 20, 10, 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65 }, "Usage",
+				new()
+				{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" });
 
 			// Simulate update
 			timer.Interval = TimeSpan.FromSeconds(SettingsModel.Instance.SelectedRefreshInterval);

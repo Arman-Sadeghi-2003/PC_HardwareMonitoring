@@ -13,7 +13,13 @@ namespace PC_HardwareMonitoring.ViewModels.Commons
 		[ObservableProperty]
 		private ObservableCollection<ISeries> series = new();
 
-		public ChartViewModel(List<double> series)
+		[ObservableProperty]
+		private ObservableCollection<Axis> xAxis = new();
+
+		[ObservableProperty]
+		private string title = "";
+
+		public ChartViewModel(List<double> series, string title, List<string> axisLabel)
 		{
 			Series = new()
 			{
@@ -24,6 +30,20 @@ namespace PC_HardwareMonitoring.ViewModels.Commons
 					Stroke = new SolidColorPaint(SKColors.Firebrick),
 				}
 			};
+
+			XAxis = new()
+			{
+				new Axis()
+				{
+					Name = title,
+					NamePaint = new SolidColorPaint(SKColors.DodgerBlue),
+					Labels = axisLabel,
+					LabelsPaint = new SolidColorPaint(SKColors.Firebrick),
+					Labeler = Labelers.SixRepresentativeDigits,
+				}
+			};
+
+			Title = title;
 		}
 	}
 }

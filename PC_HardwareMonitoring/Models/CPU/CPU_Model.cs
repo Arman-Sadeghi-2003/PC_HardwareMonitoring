@@ -1,6 +1,4 @@
-﻿using PC_HardwareMonitoring.Models.CPU.Temperature;
-using PC_HardwareMonitoring.Models.CPU.Usage;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PC_HardwareMonitoring.Models.CPU
 {
@@ -26,7 +24,8 @@ namespace PC_HardwareMonitoring.Models.CPU
 		public string? AddressWidth { get; set; }
 		public string? Revision { get; set; }
 
-		public List<CPU_Usage> CPU_Usages { get; set; } = new();
-		public List<CPU_Temperature> CPU_Temperatures { get; set;} = new();
+		public List<string> CoreNames { get; set; }
+		//public List<CPU_Usage> CPU_Usages { get; set; } = new();
+		//public List<CPU_Temperature> CPU_Temperatures { get; set;} = new();
 	}
 }

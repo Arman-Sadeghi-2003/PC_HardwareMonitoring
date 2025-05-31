@@ -83,7 +83,8 @@
             Grid.ColumnSpan="2"
             Spacing="2">
           <TextBlock Text="{DynamicResource CPUCoreName}"/>
-          <ComboBox />
+          <ComboBox ItemsSource="{Binding CPUCores}" SelectedItem="{Binding Selected_CPUCore}"
+                    />
         </StackPanel>
         
         <!-- Temperature -->
@@ -91,7 +92,7 @@
 
 
         <!-- Usage -->
-        <TransitioningContentControl Content="{Binding CPU_Temperature}" Grid.Row="1" Grid.Column="1"/>
+        <TransitioningContentControl Content="{Binding CPU_Usage}" Grid.Row="1" Grid.Column="1"/>
 
       </Grid>
     </Grid>

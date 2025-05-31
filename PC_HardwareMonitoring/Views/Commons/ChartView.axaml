@@ -13,6 +13,7 @@
       Series="{Binding Series}"
       AnimationsSpeed="00:00:1"
       EasingFunction="{Binding Source={x:Static lvcore:EasingFunctions.PolinominalIn}}"
-      ZoomMode="PanX"/>
+      ZoomMode="PanX"
+      XAxes="{Binding XAxis}"/>
   
 </UserControl>
