@@ -7,16 +7,29 @@ using System.Threading.Tasks;
 
 namespace PC_HardwareMonitoring.Tools.Localization
 {
+	/// <summary>
+	/// Manages localization and resource updates for the application.
+	/// </summary>
 	public class LocalizationManager
 	{
 		private LocalizationManager() { }
 		private static LocalizationManager instance;
+
+		/// <summary>
+		/// Gets the singleton instance of the <see cref="LocalizationManager"/> class.
+		/// </summary>
 		public static LocalizationManager Instance => instance ?? (instance = new LocalizationManager());
+
+		/// <summary>
+		/// Updates the application's resources for a given culture.
+		/// </summary>
+		/// <param name="culture">The culture to update resources for.</param>
 		public async Task UpdateResourcesForCulture(CultureInfo culture)
 		{
 			// Clear existing localization resources
 			var resources = App.Current.Resources.MergedDictionaries.Where(x => x is ResourceInclude resourceInclude &&
 				resourceInclude.Source.AbsoluteUri.Contains("/Localization/")).ToList();
+
 			foreach (var resource in resources)
 			{
 				App.Current.Resources.MergedDictionaries.Remove(resource);
@@ -39,7 +52,10 @@ namespace PC_HardwareMonitoring.Tools.Localization
 			await Task.Delay(50);
 		}
 
-		// Method to change language at runtime
+		/// <summary>
+		/// Changes the application's language at runtime.
+		/// </summary>
+		/// <param name="languageCode">The language code to change to (e.g., "en-US", "fr-FR").</param>
 		public void ChangeLanguage(string languageCode)
 		{
 			var newCulture = new CultureInfo(languageCode);
@@ -49,6 +65,11 @@ namespace PC_HardwareMonitoring.Tools.Localization
 			UpdateResourcesForCulture(newCulture);
 		}
 
+		/// <summary>
+		/// Gets a localized string for a given key.
+		/// </summary>
+		/// <param name="key">The key of the string to retrieve.</param>
+		/// <returns>The localized string, or the key if the string is not found.</returns>
 		public string GetString(string key)
 		{
 			try

@@ -5,23 +5,22 @@ using System.Xml.Serialization;
 namespace PC_HardwareMonitoring.Tools.Helpers
 {
 	/// <summary>
-	/// Functions for performing common XML Serialization operations.
-	/// <para>Only public properties and variables will be serialized.</para>
-	/// <para>Use the [XmlIgnore] attribute to prevent a property/variable from being serialized.</para>
-	/// <para>Object to be serialized must have a parameterless constructor.</para>
+	/// Provides functions for performing common XML Serialization operations.
 	/// </summary>
+	/// <remarks>
+	/// Only public properties and variables will be serialized.
+	/// Use the [XmlIgnore] attribute to prevent a property/variable from being serialized.
+	/// Object to be serialized must have a parameterless constructor.
+	/// </remarks>
 	public static class XmlSerialization
 	{
 		/// <summary>
 		/// Writes the given object instance to an XML file.
-		/// <para>Only Public properties and variables will be written to the file. These can be any type though, even other classes.</para>
-		/// <para>If there are public properties/variables that you do not want written to the file, decorate them with the [XmlIgnore] attribute.</para>
-		/// <para>Object type must have a parameterless constructor.</para>
 		/// </summary>
 		/// <typeparam name="T">The type of object being written to the file.</typeparam>
 		/// <param name="filePath">The file path to write the object instance to.</param>
 		/// <param name="objectToWrite">The object instance to write to the file.</param>
-		/// <param name="append">If false the file will be overwritten if it already exists. If true the contents will be appended to the file.</param>
+		/// <param name="append">If false, the file will be overwritten if it already exists. If true, the contents will be appended to the file.</param>
 		public static void WriteToXmlFile<T>(string filePath, T objectToWrite, bool append = false) where T : new()
 		{
 			TextWriter writer = null;
@@ -33,18 +32,19 @@ namespace PC_HardwareMonitoring.Tools.Helpers
 			}
 			catch
 			{
-
+				// Handle serialization exceptions here. Log the exception or take appropriate action.
 			}
 			finally
 			{
 				if (writer != null)
+				{
 					writer.Close();
+				}
 			}
 		}
 
 		/// <summary>
 		/// Reads an object instance from an XML file.
-		/// <para>Object type must have a parameterless constructor.</para>
 		/// </summary>
 		/// <typeparam name="T">The type of object to read from the file.</typeparam>
 		/// <param name="filePath">The file path to read the object instance from.</param>
@@ -60,12 +60,15 @@ namespace PC_HardwareMonitoring.Tools.Helpers
 			}
 			catch (Exception)
 			{
+				// Consider re-throwing the exception or handling it more specifically.
 				throw;
 			}
 			finally
 			{
 				if (reader != null)
+				{
 					reader.Close();
+				}
 			}
 		}
 	}
