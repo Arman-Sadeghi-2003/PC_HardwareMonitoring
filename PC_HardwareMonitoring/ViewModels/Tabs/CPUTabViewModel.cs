@@ -1,4 +1,7 @@
-﻿using Avalonia.Controls;
+﻿/// <summary>
+/// ViewModel for the CPU tab, displaying CPU-related information and charts.
+/// </summary>
+using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -19,92 +22,174 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 	{
 		private readonly DispatcherTimer timer;
 
+		/// <summary>
+		/// Gets or sets the collection of available CPU models.
+		/// </summary>
 		[ObservableProperty]
 		private ObservableCollection<ComboBoxItem> _CPU_Models;
 
+		/// <summary>
+		/// Gets or sets the selected CPU model.
+		/// </summary>
 		[ObservableProperty]
 		private ComboBoxItem? selected_CPU;
 
+		/// <summary>
+		/// Gets or sets the collection of available CPU cores.
+		/// </summary>
 		[ObservableProperty]
 		private ObservableCollection<ComboBoxItem> _CPUCores;
 
+		/// <summary>
+		/// Gets or sets the selected CPU core.
+		/// </summary>
 		[ObservableProperty]
 		private ComboBoxItem? selected_CPUCore;
 
 		// CPU Charts model
 
+		/// <summary>
+		/// Gets or sets the CPU temperature chart ViewModel.
+		/// </summary>
 		[ObservableProperty]
 		private ChartViewModel _CPU_Temperature;
+
+		/// <summary>
+		/// Gets or sets the CPU usage chart ViewModel.
+		/// </summary>
 		[ObservableProperty]
 		private ChartViewModel _CPU_Usage;
 
 		#region Features
 
+		/// <summary>
+		/// Gets or sets the CPU name information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Name;
 
+		/// <summary>
+		/// Gets or sets the CPU manufacturer information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Manufacturer;
 
+		/// <summary>
+		/// Gets or sets the CPU description information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Description;
 
+		/// <summary>
+		/// Gets or sets the CPU processor ID information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_ProcessorId;
 
+		/// <summary>
+		/// Gets or sets the CPU architecture information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Architecture;
 
+		/// <summary>
+		/// Gets or sets the CPU number of cores information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_NumberOfCores;
 
+		/// <summary>
+		/// Gets or sets the CPU number of logical processors information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_NumberOfLogicalProcessors;
 
+		/// <summary>
+		/// Gets or sets the CPU maximum clock speed information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_MaxClockSpeed;
 
+		/// <summary>
+		/// Gets or sets the CPU current clock speed information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_CurrentClockSpeed;
 
+		/// <summary>
+		/// Gets or sets the CPU socket designation information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_SocketDesignation;
 
+		/// <summary>
+		/// Gets or sets the CPU L2 cache size information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_L2CacheSize;
 
+		/// <summary>
+		/// Gets or sets the CPU L3 cache size information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_L3CacheSize;
 
+		/// <summary>
+		/// Gets or sets the CPU thread count information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_ThreadCount;
 
+		/// <summary>
+		/// Gets or sets the CPU status information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Status;
 
+		/// <summary>
+		/// Gets or sets the CPU virtualization enabled information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_VirtualizationEnabled;
 
+		/// <summary>
+		/// Gets or sets the CPU second level address translation information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_SecondLevelAddressTranslation;
 
+		/// <summary>
+		/// Gets or sets the CPU data width information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_DataWidth;
 
+		/// <summary>
+		/// Gets or sets the CPU address width information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_AddressWidth;
 
+		/// <summary>
+		/// Gets or sets the CPU revision information.
+		/// </summary>
 		[ObservableProperty]
 		private InlineCollection _CPU_Revision;
 
 		#endregion Features
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CPUTabViewModel"/> class.
+		/// </summary>
 		public CPUTabViewModel()
 		{
 			timer = new();
 			initialize();
 		}
 
+		/// <summary>
+		/// Initializes the CPU tab ViewModel, populating CPU models, cores, and setting up charts.
+		/// </summary>
 		private void initialize()
 		{
 			int cpuCounter = 1;
@@ -128,11 +213,20 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			timer.Start();
 		}
 
+		/// <summary>
+		/// Handles the timer tick event.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void Timer_Tick(object? sender, EventArgs e)
 		{
-
+			//TODO : Implement the Timer_Tick
 		}
 
+		/// <summary>
+		/// Handles property changes and updates the UI accordingly.
+		/// </summary>
+		/// <param name="e">The event arguments containing information about the property change.</param>
 		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
 		{
 			base.OnPropertyChanged(e);
@@ -147,11 +241,16 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			}
 		}
 
+		/// <summary>
+		/// Updates the CPU information displayed based on the selected CPU.
+		/// </summary>
 		private void selecteCPU()
 		{
+			// Check if the selected CPU is null or not of type CPU_Model.
 			if (Selected_CPU.Tag is not CPU_Model cpu)
 				return;
 
+			// Update the CPU information fields.
 			CPU_Name = getString("CPUNameText", cpu.Name);
 			CPU_Manufacturer = getString("CPUManufacturerText", cpu.Manufacturer);
 			CPU_Description = getString("CPUDescriptionText", cpu.Description);
@@ -173,21 +272,33 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			CPU_Revision = getString("CPURevisionText", cpu.Revision);
 		}
 
+		/// <summary>
+		/// Retrieves a localized string and formats it with the provided value.
+		/// </summary>
+		/// <param name="key">The localization key.</param>
+		/// <param name="value">The value to format the string with.</param>
+		/// <returns>The formatted <see cref="InlineCollection"/>.</returns>
 		private InlineCollection getString(string key, string? value)
 		{
+			//If value is null or empty, set it to empty string to prevent null reference exceptions
 			value = value ?? string.Empty;
+
+			// Get the localized string from the LocalizationManager.
 			var leftSide = LocalizationManager.Instance.GetString(key);
 
+			// Create a bold Run with the localized string.
 			var l = new Run()
 			{
 				Text = leftSide + "  ",
 				FontWeight = Avalonia.Media.FontWeight.Bold,
 			};
+			// Create a Run with the provided value.
 			var r = new Run()
 			{
 				Text = value,
 			};
 
+			// Return the InlineCollection containing the formatted string.
 			return new() { l, r };
 		}
 	}

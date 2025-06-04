@@ -1,8 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿/// <summary>
+/// Base class for all ViewModels in the application.
+/// </summary>
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace PC_HardwareMonitoring.ViewModels
 {
-    public class ViewModelBase : ObservableObject
-    {
-    }
+	public class ViewModelBase : ObservableObject
+	{
+	}
 }
