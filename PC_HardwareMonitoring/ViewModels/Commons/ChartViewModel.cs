@@ -8,6 +8,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace PC_HardwareMonitoring.ViewModels.Commons
 {

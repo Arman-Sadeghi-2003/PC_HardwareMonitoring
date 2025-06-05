@@ -82,8 +82,8 @@
             Margin="5">
 
         <!-- Selected core -->
-        <StackPanel 
-            Orientation="Horizontal" 
+        <StackPanel
+            Orientation="Horizontal"
             HorizontalAlignment="Center"
             Grid.ColumnSpan="2"
             Spacing="2">
@@ -91,7 +91,7 @@
           <ComboBox ItemsSource="{Binding CPUCores}" SelectedItem="{Binding Selected_CPUCore}"
                     />
         </StackPanel>
-        
+
         <!-- Temperature -->
         <TransitioningContentControl Content="{Binding CPU_Temperature}" Grid.Row="1"/>
 

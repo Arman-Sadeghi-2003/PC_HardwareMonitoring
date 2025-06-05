@@ -57,7 +57,6 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
                 chartLabels[i] = (timeStampCounter - (MaxDataPoints - 1 - i)).ToString();
             }
 
-
 			CpuTemperatureChart = new ChartViewModel(
 				new List<double>(cpuTemperatureHistory),
 				"CPU Temperature (°C)",

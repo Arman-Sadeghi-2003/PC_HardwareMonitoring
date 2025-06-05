@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management;
 using System.Text;
+using SensorValue = PC_HardwareMonitoring.Models.Hardware.SensorValue;
 
 namespace PC_HardwareMonitoring.Tools.HW
 {
