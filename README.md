@@ -10,9 +10,12 @@ A cross-platform PC hardware monitoring application built using **C#**, **Avalon
 
 ## 📸 Preview
 
-> *(For future)*
+<pre>CPU tab view</pre>
+<img src="https://github.com/user-attachments/assets/a732c00e-f00a-43cd-a544-71ae7ec87cad" alt="CPU tab view" width="996" height="510"/>
+<br/>
+<pre>Settings view</pre>
+<img src="https://github.com/user-attachments/assets/1a762815-f9e4-4eb8-a566-8649530f2477" alt="Settings view" width="875.7" height="500.5"/>
 
----
 
 ## 🧠 Features
 
