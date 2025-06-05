@@ -4,8 +4,10 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Threading;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Models.CPU;
+using PC_HardwareMonitoring.Models.Hardware; // Added for SensorValue
 using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.Tools.Global;
 using PC_HardwareMonitoring.Tools.HW; // Added for Monitor

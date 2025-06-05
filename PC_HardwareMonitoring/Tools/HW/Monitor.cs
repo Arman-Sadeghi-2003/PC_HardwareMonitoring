@@ -1,6 +1,7 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using PC_HardwareMonitoring.Infrastructure.NotificationManager;
 using PC_HardwareMonitoring.Models.CPU;
+using PC_HardwareMonitoring.Models.Hardware; // Added for SensorValue
 using PC_HardwareMonitoring.Tools.Global;
 using System;
 using System.Collections.Generic;
@@ -599,7 +600,7 @@ namespace PC_HardwareMonitoring.Tools.HW
 					foreach (var sensor in hardware.Sensors)
 					{
 						if ((sensor.SensorType == SensorType.Load && (sensor.Name.Contains("Core") || sensor.Name.Contains("CPU Total"))) ||
-							(sensor.SensorType == SensorType.Power && sensor.Name.Contains("Package"))) // e.g. CPU Package Power
+						    (sensor.SensorType == SensorType.Power && sensor.Name.Contains("Package"))) // e.g. CPU Package Power
 						{
 							sensorValues.Add(new SensorValue(sensor.Name, sensor.Value));
 							if (sensor.SensorType == SensorType.Load)

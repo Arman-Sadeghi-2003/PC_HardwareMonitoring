@@ -3,7 +3,8 @@
 /// </summary>
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
-using PC_HardwareMonitoring.Models.Settings;    // Added
+using PC_HardwareMonitoring.Models.Hardware; // Added
+using PC_HardwareMonitoring.Models.Settings;   // Added
 using PC_HardwareMonitoring.Tools.HW;
 using PC_HardwareMonitoring.ViewModels.Commons; // Added
 using System;                                   // Added for StringComparison
@@ -109,7 +110,7 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			// VRAM Usage can be tricky. Sensor names vary: "Memory Bus Load", "Memory Used", "D3D Primary VidMem Used"
 			// SmallData is a generic type, so we rely on names.
 			var memorySensor = gpuAllSensors.FirstOrDefault(s =>
-				s.Name.Contains("Memory", StringComparison.OrdinalIgnoreCase) && (s.Name.Contains("Usage") || s.Name.Contains("Used") || s.Name.Contains("Load")));
+				s.Name.Contains("Memory", StringComparison.OrdinalIgnoreCase) && (s.Name.Contains("Usage") || s.Name.Contains("Used") || s.Name.Contains("Load")) );
 			// Sometimes memory is reported in MB or GB directly by SmallData sensors
 			if (memorySensor != null && memorySensor.Value.HasValue)
 			{

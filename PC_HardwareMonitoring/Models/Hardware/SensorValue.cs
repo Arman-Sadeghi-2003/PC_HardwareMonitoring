@@ -1,3 +1,4 @@
+
 ﻿namespace PC_HardwareMonitoring.Models.Hardware
 {
 	public class SensorValue

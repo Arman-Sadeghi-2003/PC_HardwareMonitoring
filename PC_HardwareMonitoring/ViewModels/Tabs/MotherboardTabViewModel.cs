@@ -1,15 +1,15 @@
 ﻿/// <summary>
 /// ViewModel for the Motherboard tab, displaying motherboard-related information.
 /// </summary>
-using Avalonia.Threading;                    // Added
+using Avalonia.Threading; // Added
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Models.Hardware; // Added
 using PC_HardwareMonitoring.Models.Settings; // Added
 using PC_HardwareMonitoring.Tools.HW;
-using System;                                // Added
-using System.Collections.Generic;            // Added
-using System.Collections.ObjectModel;        // Added
-using System.Linq;                           // Added
+using System; // Added
+using System.Collections.Generic; // Added
+using System.Collections.ObjectModel; // Added
+using System.Linq; // Added
 
 namespace PC_HardwareMonitoring.ViewModels.Tabs
 {

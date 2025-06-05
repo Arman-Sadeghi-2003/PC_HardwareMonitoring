@@ -1,14 +1,15 @@
 ﻿/// <summary>
 /// ViewModel for the Home tab.
 /// </summary>
-using Avalonia.Threading;                      // Added
+using Avalonia.Threading; // Added
 using CommunityToolkit.Mvvm.ComponentModel;
+using PC_HardwareMonitoring.Models.Hardware; // Added
 using PC_HardwareMonitoring.Models.Settings;   // Added
-using PC_HardwareMonitoring.Tools.HW;          // Added
+using PC_HardwareMonitoring.Tools.HW;         // Added
 using PC_HardwareMonitoring.ViewModels.Commons;
-using System;                                  // Added
-using System.Collections.Generic;              // Added
-using System.Linq;                             // Added
+using System;               // Added
+using System.Collections.Generic; // Added
+using System.Linq;          // Added
 
 namespace PC_HardwareMonitoring.ViewModels.Tabs
 {
@@ -52,10 +53,9 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			}
 			// Initialize timeStampCounter to fill labels correctly for the first display
 			for (int i = 0; i < MaxDataPoints; i++)
-			{
-				chartLabels[i] = (timeStampCounter - (MaxDataPoints - 1 - i)).ToString();
-			}
-
+            {
+                chartLabels[i] = (timeStampCounter - (MaxDataPoints - 1 - i)).ToString();
+            }
 
 			CpuTemperatureChart = new ChartViewModel(
 				new List<double>(cpuTemperatureHistory),

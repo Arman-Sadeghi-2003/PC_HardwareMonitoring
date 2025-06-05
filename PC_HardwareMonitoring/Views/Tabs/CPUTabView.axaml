@@ -73,7 +73,7 @@
         <TextBlock Text="{Binding CpuPowerDraw}"/>
       </StackPanel>
 
-      <Grid
+      <Grid 
             ColumnDefinitions="* *"
             RowDefinitions="auto *"
             RowSpacing="5"
