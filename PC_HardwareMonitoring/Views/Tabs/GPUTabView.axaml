@@ -5,14 +5,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:GPUTabViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <Grid ColumnDefinitions="* *">
-            <TextBlock Text="{Binding GPU_Infos}" />
-            <TextBlock Grid.Column="1" Text="{Binding GPU_Temp}" />
-        </Grid>
-    </ScrollViewer>
+  <ScrollViewer Margin="10">
+    <StackPanel Spacing="10">
+      <TextBlock Text="General GPU Information" FontSize="16" FontWeight="Bold"/>
+      <Border Classes="InformationBorder">
+        <TextBlock Text="{Binding GPU_Infos}" TextWrapping="Wrap" />
+      </Border>
+
+      <TextBlock Text="GPU Temperature Chart" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+      <TransitioningContentControl Content="{Binding GPUTemperatureChart}" MinHeight="200"/>
+
+      <TextBlock Text="Live GPU Metrics" FontSize="16" FontWeight="Bold" Margin="0,10,0,5"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" Classes="SensorGrid">
+        <TextBlock Text="GPU Load:" Grid.Row="0" Grid.Column="0" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding GpuLoad}" Grid.Row="0" Grid.Column="1"/>
+
+        <TextBlock Text="Memory Usage:" Grid.Row="1" Grid.Column="0" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding GpuMemoryUsage}" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBlock Text="Fan Speed:" Grid.Row="2" Grid.Column="0" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding GpuFanSpeed}" Grid.Row="2" Grid.Column="1"/>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
 </UserControl>

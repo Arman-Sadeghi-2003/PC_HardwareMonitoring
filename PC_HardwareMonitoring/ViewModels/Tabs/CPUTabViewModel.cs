@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using PC_HardwareMonitoring.Models.CPU;
 using PC_HardwareMonitoring.Models.Settings;
 using PC_HardwareMonitoring.Tools.Global;
+using PC_HardwareMonitoring.Tools.HW; // Added for Monitor
 using PC_HardwareMonitoring.Tools.Localization;
 using PC_HardwareMonitoring.ViewModels.Commons;
 using System;
@@ -21,6 +22,11 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 	public partial class CPUTabViewModel : ViewModelBase
 	{
 		private readonly DispatcherTimer timer;
+		private const int MaxDataPoints = 30; // Max points to display on the chart
+		private readonly List<double> cpuTemperatureHistory = new();
+		private readonly List<double> cpuUsageHistory = new();
+		private readonly List<string> chartLabels = new();
+		private int timeStampCounter = 0;
 
 		/// <summary>
 		/// Gets or sets the collection of available CPU models.
@@ -59,6 +65,9 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		/// </summary>
 		[ObservableProperty]
 		private ChartViewModel _CPU_Usage;
+
+		[ObservableProperty]
+		private string _cpuPowerDraw;
 
 		#region Features
 
@@ -199,13 +208,26 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 			CPUCores = new(((Selected_CPU?.Tag as CPU_Model)?.CoreNames ?? new List<string>()).Select(i => new ComboBoxItem() { Content = i }));
 			Selected_CPUCore = CPUCores.FirstOrDefault();
 
+			// Initialize history lists and labels
+			for (int i = 0; i < MaxDataPoints; i++)
+			{
+				cpuTemperatureHistory.Add(0); // Initialize with 0
+				cpuUsageHistory.Add(0);       // Initialize with 0
+				chartLabels.Add((i + 1).ToString());
+			}
+
 			// Setup initial chart series
-			CPU_Temperature = new(new() { 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65, 80, 85, 79, 76, 75, 73, 77, 78, 70 }, "Temperature",
-				new()
-				{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" });
-			CPU_Usage = new(new() { 2, 5, 3, 5, 8, 5, 7, 9, 8, 7, 15, 20, 10, 58, 63, 25, 54, 64, 50, 40, 30, 35, 45, 55, 65 }, "Usage",
-				new()
-				{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" });
+			CPU_Temperature = new ChartViewModel(
+				new List<double>(cpuTemperatureHistory),
+				"CPU Temperature (°C)", // Chart Title
+				new List<string>(chartLabels),
+				"CPU Package Temp"); // Series Name
+
+			CPU_Usage = new ChartViewModel(
+				new List<double>(cpuUsageHistory),
+				"CPU Usage (%)", // Chart Title
+				new List<string>(chartLabels),
+				"CPU Total Usage"); // Series Name
 
 			// Simulate update
 			timer.Interval = TimeSpan.FromSeconds(SettingsModel.Instance.SelectedRefreshInterval);
@@ -220,7 +242,70 @@ namespace PC_HardwareMonitoring.ViewModels.Tabs
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void Timer_Tick(object? sender, EventArgs e)
 		{
-			//TODO : Implement the Timer_Tick
+			if (timer != null)
+			{
+				timer.Interval = TimeSpan.FromSeconds(SettingsModel.Instance.SelectedRefreshInterval);
+			}
+
+			// --- Update CPU Temperature ---
+			var cpuTemperatures = Monitor.Instance.GetCPUTemp();
+			float? currentCpuTemp = null;
+
+			// Prioritize "CPU Package" or "CPU Total"
+			currentCpuTemp = cpuTemperatures.FirstOrDefault(s => s.Name.Equals("CPU Package", StringComparison.OrdinalIgnoreCase) || s.Name.Equals("CPU Total", StringComparison.OrdinalIgnoreCase))?.Value;
+
+			if (!currentCpuTemp.HasValue)
+			{
+				// If not found, average core temperatures
+				var coreTemps = cpuTemperatures.Where(s => s.Name.Contains("Core", StringComparison.OrdinalIgnoreCase) && s.Value.HasValue).ToList();
+				if (coreTemps.Any())
+				{
+					currentCpuTemp = coreTemps.Average(s => s.Value.Value);
+				}
+			}
+			UpdateHistory(cpuTemperatureHistory, currentCpuTemp ?? 0); // Use 0 if no data
+			CPU_Temperature.UpdateData(new List<double>(cpuTemperatureHistory), new List<string>(chartLabels));
+
+			// --- Update CPU Usage & Power ---
+			var cpuSensors = Monitor.Instance.GetCPUUsage(); // This now includes Load and Power sensors
+			float? currentCpuUsage = null;
+			float? currentCpuPower = null;
+
+			// Process Load sensors for chart
+			var cpuLoadSensors = cpuSensors.Where(s => s.Name.Contains("Load", StringComparison.OrdinalIgnoreCase) || s.Name.Contains("Total", StringComparison.OrdinalIgnoreCase)).ToList();
+			currentCpuUsage = cpuLoadSensors.FirstOrDefault(s => s.Name.Equals("CPU Total", StringComparison.OrdinalIgnoreCase))?.Value;
+			if (!currentCpuUsage.HasValue)
+			{
+				var coreUsages = cpuLoadSensors.Where(s => s.Name.Contains("Core", StringComparison.OrdinalIgnoreCase) && s.Value.HasValue).ToList();
+				if (coreUsages.Any())
+				{
+					currentCpuUsage = coreUsages.Average(s => s.Value.Value);
+				}
+			}
+			UpdateHistory(cpuUsageHistory, currentCpuUsage ?? 0);
+			CPU_Usage.UpdateData(new List<double>(cpuUsageHistory), new List<string>(chartLabels));
+
+			// Process Power sensors for text display
+			var powerSensor = cpuSensors.FirstOrDefault(s => s.Name.Contains("Package Power", StringComparison.OrdinalIgnoreCase) || (s.Name.Contains("Power") && s.Name.Contains("CPU")));
+			if (powerSensor != null && powerSensor.Value.HasValue)
+			{
+				CpuPowerDraw = $"{powerSensor.Value:F1} W";
+			}
+			else
+			{
+				CpuPowerDraw = "N/A";
+			}
+
+			// Update labels (simple rolling counter for this example)
+			timeStampCounter++;
+			chartLabels.RemoveAt(0);
+			chartLabels.Add(timeStampCounter.ToString());
+		}
+
+		private void UpdateHistory(List<double> history, double newValue)
+		{
+			history.RemoveAt(0);
+			history.Add(newValue);
 		}
 
 		/// <summary>
