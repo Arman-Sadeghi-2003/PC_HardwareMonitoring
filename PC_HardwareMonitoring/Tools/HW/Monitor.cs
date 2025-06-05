@@ -1,6 +1,7 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using PC_HardwareMonitoring.Infrastructure.NotificationManager;
 using PC_HardwareMonitoring.Models.CPU;
+using PC_HardwareMonitoring.Models.Hardware; // Added for SensorValue
 using PC_HardwareMonitoring.Tools.Global;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,78 @@ namespace PC_HardwareMonitoring.Tools.HW
 			return builder.ToString();
 		}
 
+		/// <summary>
+		/// Retrieves current temperature and fan speed readings for the motherboard.
+		/// </summary>
+		/// <returns>A list of SensorValue objects representing motherboard sensor readings.</returns>
+		public List<SensorValue> GetMotherboardSensors()
+		{
+			var sensorValues = new List<SensorValue>();
+			try
+			{
+				var computer = CreateComputer(isMotherboardEnabled: true);
+				computer.Open();
+				foreach (var hardware in computer.Hardware)
+				{
+					if (hardware.HardwareType == HardwareType.Motherboard)
+					{
+						hardware.Update();
+						foreach (var sensor in hardware.Sensors)
+						{
+							if (sensor.SensorType == SensorType.Temperature || sensor.SensorType == SensorType.Fan)
+							{
+								sensorValues.Add(new SensorValue(sensor.Name, sensor.Value));
+							}
+						}
+					}
+				}
+				computer.Close();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error retrieving motherboard sensors: {ex.Message}");
+			}
+			return sensorValues;
+		}
+
+		/// <summary>
+		/// Retrieves current load, memory usage, and fan speed readings for GPUs.
+		/// </summary>
+		/// <returns>A list of SensorValue objects representing GPU sensor readings.</returns>
+		public List<SensorValue> GetGPUSensors()
+		{
+			var sensorValues = new List<SensorValue>();
+			try
+			{
+				var computer = CreateComputer(isGpuEnabled: true);
+				computer.Open();
+				foreach (var hardware in computer.Hardware)
+				{
+					if (hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuIntel)
+					{
+						hardware.Update();
+						foreach (var sensor in hardware.Sensors)
+						{
+							if (sensor.SensorType == SensorType.Load ||
+								sensor.SensorType == SensorType.SmallData || // Often used for VRAM usage, check specific sensor names
+								sensor.SensorType == SensorType.Fan ||
+								sensor.SensorType == SensorType.Control) // GPU Core Control, GPU Memory Control %
+							{
+								// Prefixing with hardware name to distinguish if multiple GPUs
+								sensorValues.Add(new SensorValue($"{hardware.Name} - {sensor.Name}", sensor.Value));
+							}
+						}
+					}
+				}
+				computer.Close();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error retrieving GPU sensors: {ex.Message}");
+			}
+			return sensorValues;
+		}
+
 		#endregion
 
 		#region Public Methods - Motherboard Information
@@ -127,50 +200,50 @@ namespace PC_HardwareMonitoring.Tools.HW
 		/// Retrieves the current temperature readings for all CPU cores.
 		/// Triggers temperature warning notifications if thresholds are exceeded.
 		/// </summary>
-		/// <returns>A formatted string containing temperature readings for each CPU core.</returns>
-		public string GetCPUTemp()
+		/// <returns>A list of SensorValue objects representing CPU temperature readings.</returns>
+		public List<SensorValue> GetCPUTemp()
 		{
-			var builder = new StringBuilder();
+			var sensorValues = new List<SensorValue>();
 
 			try
 			{
 				var computer = CreateComputer(isCpuEnabled: true);
 				computer.Open();
-				ProcessCPUTemperatureSensors(computer, builder);
+				sensorValues = ProcessCPUTemperatureSensors(computer); // Modified to get list
 				computer.Close();
 			}
 			catch (Exception ex)
 			{
-				builder.Clear();
-				builder.AppendLine($"Error retrieving CPU temperature: {ex.Message}");
+				// Handle or log exception, return empty list or re-throw
+				Console.WriteLine($"Error retrieving CPU temperature: {ex.Message}");
 			}
 
-			return builder.ToString();
+			return sensorValues;
 		}
 
 		/// <summary>
 		/// Retrieves the current CPU usage/load percentages for all cores.
 		/// Monitors CPU load and can trigger notifications for high usage scenarios.
 		/// </summary>
-		/// <returns>A formatted string containing CPU load percentages for each core.</returns>
-		public string GetCPUUsage()
+		/// <returns>A list of SensorValue objects representing CPU load percentages.</returns>
+		public List<SensorValue> GetCPUUsage()
 		{
-			var builder = new StringBuilder();
+			var sensorValues = new List<SensorValue>();
 
 			try
 			{
 				var computer = CreateComputer(isCpuEnabled: true);
 				computer.Open();
-				ProcessCPUUsageSensors(computer, builder);
+				sensorValues = ProcessCPUUsageSensors(computer); // Modified to get list
 				computer.Close();
 			}
 			catch (Exception ex)
 			{
-				builder.Clear();
-				builder.AppendLine($"Error retrieving CPU usage: {ex.Message}");
+				// Handle or log exception, return empty list or re-throw
+				Console.WriteLine($"Error retrieving CPU usage: {ex.Message}");
 			}
 
-			return builder.ToString();
+			return sensorValues;
 		}
 
 		#endregion
@@ -238,25 +311,25 @@ namespace PC_HardwareMonitoring.Tools.HW
 		/// Retrieves current temperature readings for all supported graphics cards.
 		/// Supports NVIDIA, AMD, and Intel GPU temperature monitoring.
 		/// </summary>
-		/// <returns>A formatted string containing GPU temperature readings.</returns>
-		public string GetGPUTemp()
+		/// <returns>A list of SensorValue objects representing GPU temperature readings.</returns>
+		public List<SensorValue> GetGPUTemp()
 		{
-			var builder = new StringBuilder();
+			var sensorValues = new List<SensorValue>();
 
 			try
 			{
 				var computer = CreateComputer(isGpuEnabled: true);
 				computer.Open();
-				ProcessGPUTemperatureSensors(computer, builder);
+				sensorValues = ProcessGPUTemperatureSensors(computer); // Modified to get list
 				computer.Close();
 			}
 			catch (Exception ex)
 			{
-				builder.Clear();
-				builder.AppendLine($"Error retrieving GPU temperature: {ex.Message}");
+				// Handle or log exception, return empty list or re-throw
+				Console.WriteLine($"Error retrieving GPU temperature: {ex.Message}");
 			}
 
-			return builder.ToString();
+			return sensorValues;
 		}
 
 		#endregion
@@ -491,8 +564,9 @@ namespace PC_HardwareMonitoring.Tools.HW
 		/// <summary>
 		/// Processes CPU temperature sensors and handles temperature warnings.
 		/// </summary>
-		private void ProcessCPUTemperatureSensors(Computer computer, StringBuilder builder)
+		private List<SensorValue> ProcessCPUTemperatureSensors(Computer computer)
 		{
+			var sensorValues = new List<SensorValue>();
 			foreach (var hardware in computer.Hardware)
 			{
 				if (hardware.HardwareType == HardwareType.Cpu)
@@ -500,21 +574,23 @@ namespace PC_HardwareMonitoring.Tools.HW
 					hardware.Update();
 					foreach (var sensor in hardware.Sensors)
 					{
-						if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
+						if (sensor.SensorType == SensorType.Temperature && (sensor.Name.Contains("Core") || sensor.Name.Contains("Package") || sensor.Name.Contains("CPU Total")))
 						{
-							builder.AppendLine($"{sensor.Name}: {sensor.Value} °C");
+							sensorValues.Add(new SensorValue(sensor.Name, sensor.Value));
 							CheckTemperatureThreshold(sensor);
 						}
 					}
 				}
 			}
+			return sensorValues;
 		}
 
 		/// <summary>
 		/// Processes CPU usage sensors and handles high usage warnings.
 		/// </summary>
-		private void ProcessCPUUsageSensors(Computer computer, StringBuilder builder)
+		private List<SensorValue> ProcessCPUUsageSensors(Computer computer)
 		{
+			var sensorValues = new List<SensorValue>();
 			foreach (var hardware in computer.Hardware)
 			{
 				if (hardware.HardwareType == HardwareType.Cpu)
@@ -522,14 +598,19 @@ namespace PC_HardwareMonitoring.Tools.HW
 					hardware.Update();
 					foreach (var sensor in hardware.Sensors)
 					{
-						if (sensor.SensorType == SensorType.Load && sensor.Name.Contains("Core"))
+						if ((sensor.SensorType == SensorType.Load && (sensor.Name.Contains("Core") || sensor.Name.Contains("CPU Total"))) ||
+						    (sensor.SensorType == SensorType.Power && sensor.Name.Contains("Package"))) // e.g. CPU Package Power
 						{
-							builder.AppendLine($"{sensor.Name}: {sensor.Value}%");
-							CheckUsageThreshold(sensor);
+							sensorValues.Add(new SensorValue(sensor.Name, sensor.Value));
+							if (sensor.SensorType == SensorType.Load)
+							{
+								CheckUsageThreshold(sensor);
+							}
 						}
 					}
 				}
 			}
+			return sensorValues;
 		}
 
 		/// <summary>
@@ -551,12 +632,57 @@ namespace PC_HardwareMonitoring.Tools.HW
 				builder.AppendLine($"  Manufacturer: {mo["Manufacturer"]}");
 				builder.AppendLine($"  Part Number: {mo["PartNumber"]}");
 				builder.AppendLine($"  Speed: {mo["Speed"]} MHz");
+				builder.AppendLine($"  Type: {GetMemoryTypeString(Convert.ToUInt16(mo["SMBIOSMemoryType"]))}"); // Added RAM Type
 				builder.AppendLine($"  Serial Number: {mo["SerialNumber"]}");
 				builder.AppendLine();
 			}
 
 			builder.AppendLine($"Total Slots Detected: {slotCount}");
 			builder.AppendLine($"Total Installed RAM: {totalCapacity / (1024 * 1024)} MB");
+		}
+
+		private string GetMemoryTypeString(ushort smbiosMemoryType)
+		{
+			// Based on SMBIOS Memory Type values
+			// See https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.6.0.pdf (Table 77)
+			// This is a simplified mapping.
+			switch (smbiosMemoryType)
+			{
+				case 0x01: return "Other";
+				case 0x02: return "Unknown";
+				case 0x03: return "DRAM";
+				case 0x04: return "EDRAM";
+				case 0x05: return "VRAM";
+				case 0x06: return "SRAM";
+				case 0x07: return "RAM";
+				case 0x08: return "ROM";
+				case 0x09: return "FLASH";
+				case 0x0A: return "EEPROM";
+				case 0x0B: return "FEPROM";
+				case 0x0C: return "EPROM";
+				case 0x0D: return "CDRAM";
+				case 0x0E: return "3DRAM";
+				case 0x0F: return "SDRAM";
+				case 0x10: return "SGRAM";
+				case 0x11: return "RDRAM";
+				case 0x12: return "DDR";
+				case 0x13: return "DDR2";
+				case 0x14: return "DDR2 FB-DIMM";
+				case 0x18: return "DDR3";
+				case 0x19: return "FBD2";
+				case 0x1A: return "DDR4";
+				case 0x1B: return "LPDDR";
+				case 0x1C: return "LPDDR2";
+				case 0x1D: return "LPDDR3";
+				case 0x1E: return "LPDDR4";
+				case 0x1F: return "Logical non-volatile device";
+				case 0x20: return "HBM";
+				case 0x21: return "HBM2";
+				case 0x22: return "DDR5";
+				case 0x23: return "LPDDR5";
+				// Add more as needed
+				default: return $"Raw Type: {smbiosMemoryType}";
+			}
 		}
 
 		/// <summary>
@@ -579,10 +705,11 @@ namespace PC_HardwareMonitoring.Tools.HW
 		}
 
 		/// <summary>
-		/// Processes GPU temperature sensors and appends readings to StringBuilder.
+		/// Processes GPU temperature sensors and appends readings to a list of SensorValue.
 		/// </summary>
-		private void ProcessGPUTemperatureSensors(Computer computer, StringBuilder builder)
+		private List<SensorValue> ProcessGPUTemperatureSensors(Computer computer)
 		{
+			var sensorValues = new List<SensorValue>();
 			foreach (IHardware hardware in computer.Hardware)
 			{
 				if (hardware.HardwareType == HardwareType.GpuNvidia ||
@@ -590,17 +717,18 @@ namespace PC_HardwareMonitoring.Tools.HW
 					hardware.HardwareType == HardwareType.GpuIntel)
 				{
 					hardware.Update();
-					builder.AppendLine($"GPU: {hardware.Name}");
-
 					foreach (ISensor sensor in hardware.Sensors)
 					{
 						if (sensor.SensorType == SensorType.Temperature)
 						{
-							builder.AppendLine($"  {sensor.Name}: {sensor.Value} °C");
+							// For GPUs, it's common to have a generic "GPU Core" or similar name.
+							// We can also capture specific memory temperatures if available.
+							sensorValues.Add(new SensorValue($"{hardware.Name} - {sensor.Name}", sensor.Value));
 						}
 					}
 				}
 			}
+			return sensorValues;
 		}
 
 		/// <summary>

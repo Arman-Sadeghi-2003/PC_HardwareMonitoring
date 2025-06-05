@@ -9,7 +9,9 @@
     d:DesignWidth="800"
     x:DataType="vm:RAMTabViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <TextBlock Text="{Binding RamInfos}" />
+    <ScrollViewer Margin="10">
+        <Border Classes="InformationBorder">
+            <TextBlock Text="{Binding RamInfos}" TextWrapping="Wrap" />
+        </Border>
     </ScrollViewer>
 </UserControl>

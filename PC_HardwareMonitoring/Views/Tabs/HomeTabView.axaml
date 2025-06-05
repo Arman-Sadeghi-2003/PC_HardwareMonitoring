@@ -12,7 +12,8 @@
     x:DataType="vm:HomeTabViewModel"
     mc:Ignorable="d">
 
-    <Grid ColumnDefinitions="* *" RowDefinitions="* *">
-         <TransitioningContentControl Content="{Binding TestChart}"/>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*" Margin="10">
+        <TransitioningContentControl Content="{Binding CpuTemperatureChart}" Grid.Column="0" Margin="0,0,5,0"/>
+        <TransitioningContentControl Content="{Binding GpuTemperatureChart}" Grid.Column="1" Margin="5,0,0,0"/>
     </Grid>
 </UserControl>
