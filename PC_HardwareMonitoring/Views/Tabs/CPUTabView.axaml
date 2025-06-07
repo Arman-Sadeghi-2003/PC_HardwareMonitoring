@@ -3,103 +3,156 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
     xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:PC_HardwareMonitoring.ViewModels.Tabs"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:CPUTabViewModel"
     mc:Ignorable="d">
-  <ScrollViewer>
-    <Grid RowDefinitions="auto auto auto *" RowSpacing="10">
-      <StackPanel
-        Margin="0,10,0,0"
-        Orientation="Horizontal"
-        Spacing="5"
-        HorizontalAlignment="Center">
-        <TextBlock Text="{DynamicResource SelectedCPUText}" VerticalAlignment="Center" />
-        <ComboBox ItemsSource="{Binding CPU_Models}" SelectedItem="{Binding Selected_CPU}" />
-      </StackPanel>
-      <Border
-        Grid.Row="1"
-        BorderBrush="White"
-        BorderThickness="1"
-        Height="150"
-        MaxHeight="150"
-        CornerRadius="10">
-        <ScrollViewer>
-          <Grid
-                RowDefinitions="auto auto auto auto auto auto auto"
-                ColumnDefinitions="* * *"
+    <ScrollViewer>
+        <Grid RowDefinitions="auto auto auto *" RowSpacing="10">
+            <StackPanel
+                Margin="0,10,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="5">
+                <TextBlock VerticalAlignment="Center" Text="{DynamicResource SelectedCPUText}" />
+                <ComboBox ItemsSource="{Binding CPU_Models}" SelectedItem="{Binding Selected_CPU}" />
+            </StackPanel>
+            <Border
+                Grid.Row="1"
+                Height="150"
+                MaxHeight="150"
+                BorderBrush="White"
+                BorderThickness="1"
+                CornerRadius="10">
+                <ScrollViewer>
+                    <Grid
+                        ColumnDefinitions="* * *"
+                        RowDefinitions="auto auto auto auto auto auto auto"
+                        RowSpacing="5">
+                        <Grid.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="Padding" Value="8" />
+                            </Style>
+                        </Grid.Styles>
+                        <!--  row one  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_Name}" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_Manufacturer}" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_Description}" />
+                        <!--  row two  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_ProcessorId}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_Architecture}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_NumberOfCores}" />
+                        <!--  row three  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_NumberOfLogicalProcessors}" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_MaxClockSpeed}" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_CurrentClockSpeed}" />
+                        <!--  row four  -->
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_SocketDesignation}" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_L2CacheSize}" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_L3CacheSize}" />
+                        <!--  row five  -->
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_ThreadCount}" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_Status}" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_VirtualizationEnabled}" />
+                        <!--  row six  -->
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_SecondLevelAddressTranslation}" />
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Inlines="{Binding CPU_DataWidth}" />
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            Inlines="{Binding CPU_AddressWidth}" />
+                        <!--  row six  -->
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Inlines="{Binding CPU_Revision}" />
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+
+            <StackPanel
+                Grid.Row="2"
+                Margin="10,5,0,5"
+                Orientation="Horizontal"
+                Spacing="5">
+                <TextBlock FontWeight="Bold" Text="CPU Power Draw:" />
+                <TextBlock Text="{Binding CpuPowerDraw}" />
+            </StackPanel>
+
+            <Grid
+                Grid.Row="3"
+                Margin="5"
+                ColumnDefinitions="* *"
+                ColumnSpacing="2"
+                RowDefinitions="auto *"
                 RowSpacing="5">
-            <Grid.Styles>
-              <Style Selector="TextBlock">
-                <Setter Property="Padding" Value="8" />
-              </Style>
-            </Grid.Styles>
-            <!-- row one -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Inlines="{Binding CPU_Name}" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Inlines="{Binding CPU_Manufacturer}" />
-            <TextBlock Grid.Row="0" Grid.Column="2" Inlines="{Binding CPU_Description}" />
-            <!-- row two -->
-            <TextBlock Grid.Row="1" Grid.Column="0" Inlines="{Binding CPU_ProcessorId}" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Inlines="{Binding CPU_Architecture}" />
-            <TextBlock Grid.Row="1" Grid.Column="2" Inlines="{Binding CPU_NumberOfCores}" />
-            <!-- row three -->
-            <TextBlock Grid.Row="2" Grid.Column="0" Inlines="{Binding CPU_NumberOfLogicalProcessors}" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Inlines="{Binding CPU_MaxClockSpeed}" />
-            <TextBlock Grid.Row="2" Grid.Column="2" Inlines="{Binding CPU_CurrentClockSpeed}" />
-            <!-- row four -->
-            <TextBlock Grid.Row="3" Grid.Column="0" Inlines="{Binding CPU_SocketDesignation}" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Inlines="{Binding CPU_L2CacheSize}" />
-            <TextBlock Grid.Row="3" Grid.Column="2" Inlines="{Binding CPU_L3CacheSize}" />
-            <!-- row five -->
-            <TextBlock Grid.Row="4" Grid.Column="0" Inlines="{Binding CPU_ThreadCount}" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Inlines="{Binding CPU_Status}" />
-            <TextBlock Grid.Row="4" Grid.Column="2" Inlines="{Binding CPU_VirtualizationEnabled}" />
-            <!-- row six -->
-            <TextBlock Grid.Row="5" Grid.Column="0" Inlines="{Binding CPU_SecondLevelAddressTranslation}" />
-            <TextBlock Grid.Row="5" Grid.Column="1" Inlines="{Binding CPU_DataWidth}" />
-            <TextBlock Grid.Row="5" Grid.Column="2" Inlines="{Binding CPU_AddressWidth}" />
-            <!-- row six -->
-            <TextBlock Grid.Row="6" Grid.Column="0" Inlines="{Binding CPU_Revision}" />
-          </Grid>
-        </ScrollViewer>
-      </Border>
 
-      <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="5" Margin="10,5,0,5">
-        <TextBlock Text="CPU Power Draw:" FontWeight="Bold"/>
-        <TextBlock Text="{Binding CpuPowerDraw}"/>
-      </StackPanel>
-
-      <Grid 
-            ColumnDefinitions="* *"
-            RowDefinitions="auto *"
-            RowSpacing="5"
-            ColumnSpacing="2"
-            Grid.Row="3"
-            Margin="5">
-
-        <!-- Selected core -->
-        <StackPanel
-            Orientation="Horizontal"
-            HorizontalAlignment="Center"
-            Grid.ColumnSpan="2"
-            Spacing="2">
-          <TextBlock Text="{DynamicResource CPUCoreName}"/>
-          <ComboBox ItemsSource="{Binding CPUCores}" SelectedItem="{Binding Selected_CPUCore}"
-                    />
-        </StackPanel>
-
-        <!-- Temperature -->
-        <TransitioningContentControl Content="{Binding CPU_Temperature}" Grid.Row="1"/>
+                <!--  Temperature  -->
+                <TransitioningContentControl Grid.Row="1" Content="{Binding CPU_Temperature}" />
 
 
-        <!-- Usage -->
-        <TransitioningContentControl Content="{Binding CPU_Usage}" Grid.Row="1" Grid.Column="1"/>
+                <!--  Usage  -->
+                <TransitioningContentControl
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="{Binding CPU_Usage}" />
 
-      </Grid>
-    </Grid>
-  </ScrollViewer>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
